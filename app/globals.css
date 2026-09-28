@@ -1,0 +1,211 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* ---------------------------------------------------------------------------
+   BuildMart design tokens
+   Brand palette is fixed; semantic surface tokens flip for dark mode.
+--------------------------------------------------------------------------- */
+@theme {
+  --color-primary-900: #0a1f44;
+  --color-primary-800: #0f2c5c;
+  --color-primary-700: #16397a;
+  --color-primary-600: #1e4a9a;
+  --color-primary-500: #2f62c2;
+  --color-primary-200: #c7d6ef;
+  --color-primary-100: #e6edf8;
+  --color-primary-50: #f3f6fc;
+
+  --color-accent-700: #b45309;
+  --color-accent-600: #d97706;
+  --color-accent-500: #f59e0b;
+  --color-accent-400: #fbbf24;
+  --color-accent-100: #fef3c7;
+  --color-accent-50: #fffbeb;
+
+  --color-success: #16a34a;
+  --color-success-50: #f0fdf4;
+  --color-warning: #eab308;
+  --color-warning-50: #fefce8;
+  --color-danger: #dc2626;
+  --color-danger-50: #fef2f2;
+
+  --color-neutral-900: #0f172a;
+  --color-neutral-800: #1e293b;
+  --color-neutral-700: #334155;
+  --color-neutral-600: #475569;
+  --color-neutral-500: #64748b;
+  --color-neutral-400: #94a3b8;
+  --color-neutral-300: #cbd5e1;
+  --color-neutral-200: #e2e8f0;
+  --color-neutral-100: #f1f5f9;
+  --color-neutral-50: #f8fafc;
+
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-jakarta), var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+
+  /* Type scale: xs 12 / sm 14 / base 16 / lg 18 / 2xl 24 / 3xl 32 / 4xl 40 / 5xl 48 */
+  --text-3xl: 2rem;
+  --text-3xl--line-height: 1.2;
+  --text-4xl: 2.5rem;
+  --text-4xl--line-height: 1.15;
+
+  --breakpoint-xs: 22.5rem; /* 360 */
+
+  --shadow-card: 0 1px 2px rgb(15 23 42 / 0.06), 0 1px 3px rgb(15 23 42 / 0.08);
+  --shadow-card-hover: 0 10px 25px -5px rgb(15 23 42 / 0.12), 0 8px 10px -6px rgb(15 23 42 / 0.08);
+
+  --animate-shimmer: shimmer 1.6s linear infinite;
+  --animate-fade-in: fade-in 0.2s ease-out;
+  --animate-slide-in-right: slide-in-right 0.25s ease-out;
+  --animate-slide-in-left: slide-in-left 0.25s ease-out;
+  --animate-slide-up: slide-up 0.25s ease-out;
+  --animate-toast-in: toast-in 0.25s ease-out;
+
+  @keyframes shimmer {
+    0% { background-position: -400px 0; }
+    100% { background-position: 400px 0; }
+  }
+  @keyframes fade-in {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  @keyframes slide-in-right {
+    from { transform: translateX(100%); }
+    to { transform: translateX(0); }
+  }
+  @keyframes slide-in-left {
+    from { transform: translateX(-100%); }
+    to { transform: translateX(0); }
+  }
+  @keyframes slide-up {
+    from { transform: translateY(100%); }
+    to { transform: translateY(0); }
+  }
+  @keyframes toast-in {
+    from { opacity: 0; transform: translateY(12px) scale(0.98); }
+    to { opacity: 1; transform: translateY(0) scale(1); }
+  }
+}
+
+/* Semantic tokens (light first) */
+@theme inline {
+  --color-background: var(--bm-background);
+  --color-surface: var(--bm-surface);
+  --color-surface-muted: var(--bm-surface-muted);
+  --color-foreground: var(--bm-foreground);
+  --color-muted-foreground: var(--bm-muted-foreground);
+  --color-border: var(--bm-border);
+  --color-ring: var(--bm-ring);
+}
+
+:root {
+  --bm-background: #f8fafc;
+  --bm-surface: #ffffff;
+  --bm-surface-muted: #f3f6fc;
+  --bm-foreground: #0f172a;
+  --bm-muted-foreground: #475569;
+  --bm-border: #e2e8f0;
+  --bm-ring: #1e4a9a;
+  color-scheme: light;
+}
+
+.dark {
+  --bm-background: #07142e;
+  --bm-surface: #0d1d3d;
+  --bm-surface-muted: #112551;
+  --bm-foreground: #e2e8f0;
+  --bm-muted-foreground: #a3b1c6;
+  --bm-border: #1f3563;
+  --bm-ring: #fbbf24;
+  color-scheme: dark;
+}
+
+/* Declared with @utility so responsive variants (e.g. lg:container-page) work */
+@utility container-page {
+  width: 100%;
+  max-width: 80rem;
+  margin-inline: auto;
+  padding-inline: 1rem;
+  @media (min-width: 1024px) {
+    padding-inline: 1.5rem;
+  }
+}
+
+@layer base {
+  html {
+    -webkit-tap-highlight-color: transparent;
+    scroll-behavior: smooth;
+  }
+  body {
+    background: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-display);
+    letter-spacing: -0.01em;
+  }
+  :focus-visible {
+    outline: 2px solid var(--color-ring);
+    outline-offset: 2px;
+    border-radius: 6px;
+  }
+  button:not(:disabled), [role="button"]:not([aria-disabled="true"]) {
+    cursor: pointer;
+  }
+  input[type="number"]::-webkit-inner-spin-button,
+  input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+  input[type="number"] {
+    -moz-appearance: textfield;
+  }
+}
+
+@layer utilities {
+  .no-scrollbar { scrollbar-width: none; }
+  .no-scrollbar::-webkit-scrollbar { display: none; }
+  .skeleton {
+    background: linear-gradient(90deg, var(--color-neutral-100) 0px, var(--color-neutral-200) 80px, var(--color-neutral-100) 160px);
+    background-size: 800px 100%;
+    animation: var(--animate-shimmer);
+  }
+  .dark .skeleton {
+    background: linear-gradient(90deg, #112551 0px, #1a3266 80px, #112551 160px);
+    background-size: 800px 100%;
+  }
+  .text-balance { text-wrap: balance; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Swiper hero pagination */
+.hero-dot {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 9999px;
+  background: rgb(255 255 255 / 0.5);
+  cursor: pointer;
+  transition: width 0.3s, background-color 0.3s;
+}
+.hero-dot-active {
+  width: 28px;
+  background: var(--color-accent-500);
+}
+.swiper-slide { height: auto; }
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
