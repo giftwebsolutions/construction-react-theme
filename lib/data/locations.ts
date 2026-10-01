@@ -1,6 +1,6 @@
 import type { DeliveryEstimate, DeliveryType, Emirate } from "@/types";
 
-export const EMIRATES = ["Dubai", "Abu Dhabi", "Sharjah", "Ajman", "Umm Al Quwain", "Ras Al Khaimah", "Fujairah"] as const satisfies readonly Emirate[];
+export const EMIRATES = ["Kingdom of Saudi Arabia", "Dubai", "Abu Dhabi", "Sharjah", "Ajman", "Umm Al Quwain", "Ras Al Khaimah", "Fujairah"] as const satisfies readonly Emirate[];
 
 export interface ServiceArea {
   id: string;
@@ -12,6 +12,7 @@ export interface ServiceArea {
 
 /** Serviceable areas. Warehouse: Al Quoz Industrial Area 3, Dubai. */
 export const SERVICE_AREAS: ServiceArea[] = [
+  { id: "riyadh", area: "Riyadh", emirate: "Kingdom of Saudi Arabia", zone: 2 },
   { id: "al-quoz", area: "Al Quoz", emirate: "Dubai", zone: 0 },
   { id: "business-bay", area: "Business Bay", emirate: "Dubai", zone: 0 },
   { id: "jumeirah", area: "Jumeirah", emirate: "Dubai", zone: 0 },

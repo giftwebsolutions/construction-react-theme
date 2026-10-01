@@ -41,7 +41,7 @@ export type MaterialType =
   | "safety";
 
 export type VatRate = 0 | 5;
-export type Emirate = "Dubai" | "Abu Dhabi" | "Sharjah" | "Ajman" | "Umm Al Quwain" | "Ras Al Khaimah" | "Fujairah";
+export type Emirate = "Kingdom of Saudi Arabia" | "Dubai" | "Abu Dhabi" | "Sharjah" | "Ajman" | "Umm Al Quwain" | "Ras Al Khaimah" | "Fujairah";
 export type DeliveryType = "parcel" | "truck" | "both";
 export type AttributeValue = string | number | string[];
 
