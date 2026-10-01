@@ -26,16 +26,16 @@ import { toCards } from "@/lib/data/card";
 export const revalidate = 3600;
 
 export const metadata: Metadata = {
-  title: { absolute: "BuildMart — Buy Construction Materials Online | Cement, Steel, Tiles, Paints" },
+  title: { absolute: "Smart-MEP — Airport Systems, Mechanical, Electrical & Construction Supplies" },
   alternates: { canonical: "/" },
 };
 
 const FEATURED_TABS = [
   { key: "all", label: "All", slug: undefined },
-  { key: "cement", label: "Cement", slug: "cement-and-concrete" },
-  { key: "steel", label: "Steel", slug: "steel-and-tmt" },
-  { key: "tiles", label: "Tiles", slug: "tiles-and-flooring" },
-  { key: "paints", label: "Paints", slug: "paints-and-coatings" },
+  { key: "civil", label: "Civil", slug: "civil" },
+  { key: "electrical", label: "Electrical", slug: "electrical" },
+  { key: "mechanical", label: "Mechanical", slug: "mechanical" },
+  { key: "fire", label: "Fire Protection", slug: "fire-protection" },
 ] as const;
 
 export default async function HomePage() {
@@ -48,10 +48,10 @@ export default async function HomePage() {
     getPromos(),
     getTestimonials(),
     getBlogPosts(3),
-    getProductsByCategory("cement-and-concrete", 10),
-    getProductsByCategory("steel-and-tmt", 10),
-    getProductsByCategory("tiles-and-flooring", 8),
-    getProductsByCategory("plumbing-and-pipes", 10),
+    getProductsByCategory("civil", 10),
+    getProductsByCategory("electrical", 10),
+    getProductsByCategory("mechanical", 8),
+    getProductsByCategory("plumbing", 10),
     ...FEATURED_TABS.map((t) => getFeaturedProducts({ categorySlug: t.slug, limit: 10 })),
   ]);
   const cat = (slug: string) => categories.find((c) => c.slug === slug)!;
@@ -63,11 +63,11 @@ export default async function HomePage() {
         <HeroSlider slides={slides} />
       </div>
 
-      {/* 2. Trust strip */}
-      <TrustStrip />
-
-      {/* 3. Shop by category */}
+      {/* 2. Shop by category */}
       <CategoryGrid categories={categories} />
+
+      {/* 3. Trust strip */}
+      <TrustStrip />
 
       {/* 4. New arrivals — swiper */}
       <Section className="pt-2 sm:pt-4">
@@ -103,10 +103,10 @@ export default async function HomePage() {
 
       {/* 8–9. Category rows — swiper */}
       <Section>
-        <CategoryRow category={cat("cement-and-concrete")} cards={toCards(cement)} />
+        <CategoryRow category={cat("civil")} cards={toCards(cement)} />
       </Section>
       <Section className="pt-0 sm:pt-2">
-        <CategoryRow category={cat("steel-and-tmt")} cards={toCards(steel)} />
+        <CategoryRow category={cat("electrical")} cards={toCards(steel)} />
       </Section>
 
       {/* Ad 2 */}
@@ -114,12 +114,12 @@ export default async function HomePage() {
 
       {/* 10. Tiles — full grid */}
       <Section>
-        <CategoryRow category={cat("tiles-and-flooring")} cards={toCards(tiles)} layout="grid" />
+        <CategoryRow category={cat("mechanical")} cards={toCards(tiles)} layout="grid" />
       </Section>
 
       {/* 11. Plumbing — swiper */}
       <Section className="pt-0 sm:pt-2">
-        <CategoryRow category={cat("plumbing-and-pipes")} cards={toCards(plumbing)} />
+        <CategoryRow category={cat("plumbing")} cards={toCards(plumbing)} />
       </Section>
 
       {/* 12. Brands */}

@@ -175,7 +175,7 @@ const seeds: CategorySeed[] = [
   },
 ];
 
-export const categories: Category[] = seeds.map((s) => {
+export const legacyCategories: Category[] = seeds.map((s) => {
   const slug = slugify(s.name);
   return {
     id: `cat-${s.materialType}`,
@@ -264,3 +264,607 @@ export const ATTRIBUTE_LABELS: Record<string, { label: string; suffix?: string }
 export function attributeLabel(key: string) {
   return ATTRIBUTE_LABELS[key]?.label ?? key.replace(/([A-Z])/g, " $1").replace(/^./, (c) => c.toUpperCase());
 }
+
+/** Shared Smart-MEP taxonomy for navigation, listing and search. */
+export const categories: Category[] = [
+  {
+    "id": "cat-airport-systems-and-airside",
+    "slug": "airport-systems-and-airside",
+    "name": "Airport Systems & Airside",
+    "shortName": "Airport & Airside",
+    "materialType": "electrical",
+    "icon": "plane",
+    "image": "/images/categories/airport.svg",
+    "banner": "/images/categories/airport.svg",
+    "description": "Airfield lighting, airside infrastructure and passenger terminal systems.",
+    "subCategories": [
+      {
+        "id": "sub-airport-systems-and-airside-airfield-lighting",
+        "slug": "airfield-lighting",
+        "name": "Airfield Lighting",
+        "categoryId": "cat-airport-systems-and-airside"
+      },
+      {
+        "id": "sub-airport-systems-and-airside-runway-taxiway-signs",
+        "slug": "runway-taxiway-signs",
+        "name": "Runway/Taxiway Signs",
+        "categoryId": "cat-airport-systems-and-airside"
+      },
+      {
+        "id": "sub-airport-systems-and-airside-papi-system",
+        "slug": "papi-system",
+        "name": "PAPI System",
+        "categoryId": "cat-airport-systems-and-airside"
+      },
+      {
+        "id": "sub-airport-systems-and-airside-approach-lighting",
+        "slug": "approach-lighting",
+        "name": "Approach Lighting",
+        "categoryId": "cat-airport-systems-and-airside"
+      },
+      {
+        "id": "sub-airport-systems-and-airside-ccr",
+        "slug": "ccr",
+        "name": "CCR",
+        "categoryId": "cat-airport-systems-and-airside"
+      },
+      {
+        "id": "sub-airport-systems-and-airside-agl-cables",
+        "slug": "agl-cables",
+        "name": "AGL Cables",
+        "categoryId": "cat-airport-systems-and-airside"
+      },
+      {
+        "id": "sub-airport-systems-and-airside-baggage-conveyor",
+        "slug": "baggage-conveyor",
+        "name": "Baggage Conveyor",
+        "categoryId": "cat-airport-systems-and-airside"
+      },
+      {
+        "id": "sub-airport-systems-and-airside-passenger-boarding-equipment",
+        "slug": "passenger-boarding-equipment",
+        "name": "Passenger Boarding Equipment",
+        "categoryId": "cat-airport-systems-and-airside"
+      },
+      {
+        "id": "sub-airport-systems-and-airside-passenger-information-displays",
+        "slug": "passenger-information-displays",
+        "name": "Passenger Information Displays",
+        "categoryId": "cat-airport-systems-and-airside"
+      },
+      {
+        "id": "sub-airport-systems-and-airside-access-control",
+        "slug": "access-control",
+        "name": "Access Control",
+        "categoryId": "cat-airport-systems-and-airside"
+      },
+      {
+        "id": "sub-airport-systems-and-airside-cctv",
+        "slug": "cctv",
+        "name": "CCTV",
+        "categoryId": "cat-airport-systems-and-airside"
+      },
+      {
+        "id": "sub-airport-systems-and-airside-public-address-system",
+        "slug": "public-address-system",
+        "name": "Public Address System",
+        "categoryId": "cat-airport-systems-and-airside"
+      }
+    ],
+    "facetKeys": [
+      "material",
+      "size",
+      "grade",
+      "diameter",
+      "voltage",
+      "power",
+      "finish",
+      "application"
+    ],
+    "cardAttributeKeys": [
+      "grade",
+      "diameter",
+      "material",
+      "size"
+    ]
+  },
+  {
+    "id": "cat-mechanical",
+    "slug": "mechanical",
+    "name": "Mechanical",
+    "shortName": "Mechanical",
+    "materialType": "tools",
+    "icon": "fan",
+    "image": "/images/categories/mechanical.svg",
+    "banner": "/images/categories/mechanical.svg",
+    "description": "HVAC equipment, ductwork, insulation and piping for efficient building services.",
+    "subCategories": [
+      {
+        "id": "sub-mechanical-ahu",
+        "slug": "ahu",
+        "name": "AHU",
+        "categoryId": "cat-mechanical"
+      },
+      {
+        "id": "sub-mechanical-fcu",
+        "slug": "fcu",
+        "name": "FCU",
+        "categoryId": "cat-mechanical"
+      },
+      {
+        "id": "sub-mechanical-chillers",
+        "slug": "chillers",
+        "name": "Chillers",
+        "categoryId": "cat-mechanical"
+      },
+      {
+        "id": "sub-mechanical-pumps",
+        "slug": "pumps",
+        "name": "Pumps",
+        "categoryId": "cat-mechanical"
+      },
+      {
+        "id": "sub-mechanical-gi-ductwork",
+        "slug": "gi-ductwork",
+        "name": "GI Ductwork",
+        "categoryId": "cat-mechanical"
+      },
+      {
+        "id": "sub-mechanical-duct-insulation",
+        "slug": "duct-insulation",
+        "name": "Duct Insulation",
+        "categoryId": "cat-mechanical"
+      },
+      {
+        "id": "sub-mechanical-chilled-water-pipe",
+        "slug": "chilled-water-pipe",
+        "name": "Chilled-Water Pipe",
+        "categoryId": "cat-mechanical"
+      },
+      {
+        "id": "sub-mechanical-refrigerant-pipe",
+        "slug": "refrigerant-pipe",
+        "name": "Refrigerant Pipe",
+        "categoryId": "cat-mechanical"
+      },
+      {
+        "id": "sub-mechanical-valves",
+        "slug": "valves",
+        "name": "Valves",
+        "categoryId": "cat-mechanical"
+      },
+      {
+        "id": "sub-mechanical-dampers",
+        "slug": "dampers",
+        "name": "Dampers",
+        "categoryId": "cat-mechanical"
+      },
+      {
+        "id": "sub-mechanical-diffusers-grilles",
+        "slug": "diffusers-grilles",
+        "name": "Diffusers / Grilles",
+        "categoryId": "cat-mechanical"
+      },
+      {
+        "id": "sub-mechanical-exhaust-fans",
+        "slug": "exhaust-fans",
+        "name": "Exhaust Fans",
+        "categoryId": "cat-mechanical"
+      },
+      {
+        "id": "sub-mechanical-louvers",
+        "slug": "louvers",
+        "name": "Louvers",
+        "categoryId": "cat-mechanical"
+      }
+    ],
+    "facetKeys": [
+      "material",
+      "size",
+      "grade",
+      "diameter",
+      "voltage",
+      "power",
+      "finish",
+      "application"
+    ],
+    "cardAttributeKeys": [
+      "grade",
+      "diameter",
+      "material",
+      "size"
+    ]
+  },
+  {
+    "id": "cat-electrical",
+    "slug": "electrical",
+    "name": "Electrical",
+    "shortName": "Electrical",
+    "materialType": "electrical",
+    "icon": "plug",
+    "image": "/images/categories/electrical.jpg",
+    "banner": "/images/categories/electrical-banner.jpg",
+    "description": "Power distribution, cables, containment, backup power and lighting.",
+    "subCategories": [
+      {
+        "id": "sub-electrical-lv-cables",
+        "slug": "lv-cables",
+        "name": "LV Cables",
+        "categoryId": "cat-electrical"
+      },
+      {
+        "id": "sub-electrical-mv-cables",
+        "slug": "mv-cables",
+        "name": "MV Cables",
+        "categoryId": "cat-electrical"
+      },
+      {
+        "id": "sub-electrical-cable-trays",
+        "slug": "cable-trays",
+        "name": "Cable Trays",
+        "categoryId": "cat-electrical"
+      },
+      {
+        "id": "sub-electrical-conduits",
+        "slug": "conduits",
+        "name": "Conduits",
+        "categoryId": "cat-electrical"
+      },
+      {
+        "id": "sub-electrical-main-switchboards",
+        "slug": "main-switchboards",
+        "name": "Main Switchboards",
+        "categoryId": "cat-electrical"
+      },
+      {
+        "id": "sub-electrical-smdb-db",
+        "slug": "smdb-db",
+        "name": "SMDB / DB",
+        "categoryId": "cat-electrical"
+      },
+      {
+        "id": "sub-electrical-mcc",
+        "slug": "mcc",
+        "name": "MCC",
+        "categoryId": "cat-electrical"
+      },
+      {
+        "id": "sub-electrical-circuit-breakers",
+        "slug": "circuit-breakers",
+        "name": "Circuit Breakers",
+        "categoryId": "cat-electrical"
+      },
+      {
+        "id": "sub-electrical-transformers",
+        "slug": "transformers",
+        "name": "Transformers",
+        "categoryId": "cat-electrical"
+      },
+      {
+        "id": "sub-electrical-generator",
+        "slug": "generator",
+        "name": "Generator",
+        "categoryId": "cat-electrical"
+      },
+      {
+        "id": "sub-electrical-ups",
+        "slug": "ups",
+        "name": "UPS",
+        "categoryId": "cat-electrical"
+      },
+      {
+        "id": "sub-electrical-lighting-fixtures",
+        "slug": "lighting-fixtures",
+        "name": "Lighting Fixtures",
+        "categoryId": "cat-electrical"
+      }
+    ],
+    "facetKeys": [
+      "material",
+      "size",
+      "grade",
+      "diameter",
+      "voltage",
+      "power",
+      "finish",
+      "application"
+    ],
+    "cardAttributeKeys": [
+      "grade",
+      "diameter",
+      "material",
+      "size"
+    ]
+  },
+  {
+    "id": "cat-plumbing",
+    "slug": "plumbing",
+    "name": "Plumbing",
+    "shortName": "Plumbing",
+    "materialType": "plumbing",
+    "icon": "pipette",
+    "image": "/images/categories/plumbing.jpg",
+    "banner": "/images/categories/plumbing-banner.jpg",
+    "description": "Water supply, drainage, pumps, fixtures and pipework for every project.",
+    "subCategories": [
+      {
+        "id": "sub-plumbing-potable-water-pipe",
+        "slug": "potable-water-pipe",
+        "name": "Potable-Water Pipe",
+        "categoryId": "cat-plumbing"
+      },
+      {
+        "id": "sub-plumbing-drainage-pipe",
+        "slug": "drainage-pipe",
+        "name": "Drainage Pipe",
+        "categoryId": "cat-plumbing"
+      },
+      {
+        "id": "sub-plumbing-pipe-fittings",
+        "slug": "pipe-fittings",
+        "name": "Pipe Fittings",
+        "categoryId": "cat-plumbing"
+      },
+      {
+        "id": "sub-plumbing-water-tanks",
+        "slug": "water-tanks",
+        "name": "Water Tanks",
+        "categoryId": "cat-plumbing"
+      },
+      {
+        "id": "sub-plumbing-transfer-booster",
+        "slug": "transfer-booster",
+        "name": "Transfer / Booster",
+        "categoryId": "cat-plumbing"
+      },
+      {
+        "id": "sub-plumbing-water-heaters",
+        "slug": "water-heaters",
+        "name": "Water Heaters",
+        "categoryId": "cat-plumbing"
+      },
+      {
+        "id": "sub-plumbing-valves",
+        "slug": "valves",
+        "name": "Valves",
+        "categoryId": "cat-plumbing"
+      },
+      {
+        "id": "sub-plumbing-floor-drains",
+        "slug": "floor-drains",
+        "name": "Floor Drains",
+        "categoryId": "cat-plumbing"
+      },
+      {
+        "id": "sub-plumbing-sanitary-fixtures",
+        "slug": "sanitary-fixtures",
+        "name": "Sanitary Fixtures",
+        "categoryId": "cat-plumbing"
+      },
+      {
+        "id": "sub-plumbing-pipe-insulation",
+        "slug": "pipe-insulation",
+        "name": "Pipe Insulation",
+        "categoryId": "cat-plumbing"
+      },
+      {
+        "id": "sub-plumbing-grease-trap",
+        "slug": "grease-trap",
+        "name": "Grease Trap",
+        "categoryId": "cat-plumbing"
+      },
+      {
+        "id": "sub-plumbing-oil-separator",
+        "slug": "oil-separator",
+        "name": "Oil Separator",
+        "categoryId": "cat-plumbing"
+      }
+    ],
+    "facetKeys": [
+      "material",
+      "size",
+      "grade",
+      "diameter",
+      "voltage",
+      "power",
+      "finish",
+      "application"
+    ],
+    "cardAttributeKeys": [
+      "grade",
+      "diameter",
+      "material",
+      "size"
+    ]
+  },
+  {
+    "id": "cat-civil",
+    "slug": "civil",
+    "name": "Civil",
+    "shortName": "Civil",
+    "materialType": "cement",
+    "icon": "construction",
+    "image": "/images/categories/cement.jpg",
+    "banner": "/images/categories/cement-banner.jpg",
+    "description": "Concrete, reinforcement, aggregates and paving materials for site construction.",
+    "subCategories": [
+      {
+        "id": "sub-civil-ready-mix-concrete",
+        "slug": "ready-mix-concrete",
+        "name": "Ready-Mix Concrete",
+        "categoryId": "cat-civil"
+      },
+      {
+        "id": "sub-civil-reinforcement-steel",
+        "slug": "reinforcement-steel",
+        "name": "Reinforcement Steel",
+        "categoryId": "cat-civil"
+      },
+      {
+        "id": "sub-civil-structural-steel",
+        "slug": "structural-steel",
+        "name": "Structural Steel",
+        "categoryId": "cat-civil"
+      },
+      {
+        "id": "sub-civil-cement",
+        "slug": "cement",
+        "name": "Cement",
+        "categoryId": "cat-civil"
+      },
+      {
+        "id": "sub-civil-fine-aggregate",
+        "slug": "fine-aggregate",
+        "name": "Fine Aggregate",
+        "categoryId": "cat-civil"
+      },
+      {
+        "id": "sub-civil-coarse-aggregate",
+        "slug": "coarse-aggregate",
+        "name": "Coarse Aggregate",
+        "categoryId": "cat-civil"
+      },
+      {
+        "id": "sub-civil-sub-base-material",
+        "slug": "sub-base-material",
+        "name": "Sub-Base Material",
+        "categoryId": "cat-civil"
+      },
+      {
+        "id": "sub-civil-asphalt",
+        "slug": "asphalt",
+        "name": "Asphalt",
+        "categoryId": "cat-civil"
+      },
+      {
+        "id": "sub-civil-concrete-paving",
+        "slug": "concrete-paving",
+        "name": "Concrete Paving",
+        "categoryId": "cat-civil"
+      },
+      {
+        "id": "sub-civil-kerbstones",
+        "slug": "kerbstones",
+        "name": "Kerbstones",
+        "categoryId": "cat-civil"
+      },
+      {
+        "id": "sub-civil-interlock-pavers",
+        "slug": "interlock-pavers",
+        "name": "Interlock / Pavers",
+        "categoryId": "cat-civil"
+      },
+      {
+        "id": "sub-civil-concrete-blocks",
+        "slug": "concrete-blocks",
+        "name": "Concrete Blocks",
+        "categoryId": "cat-civil"
+      }
+    ],
+    "facetKeys": [
+      "material",
+      "size",
+      "grade",
+      "diameter",
+      "voltage",
+      "power",
+      "finish",
+      "application"
+    ],
+    "cardAttributeKeys": [
+      "grade",
+      "diameter",
+      "material",
+      "size"
+    ]
+  },
+  {
+    "id": "cat-fire-protection",
+    "slug": "fire-protection",
+    "name": "Fire Protection",
+    "shortName": "Fire Protection",
+    "materialType": "safety",
+    "icon": "flame",
+    "image": "/images/categories/fire-protection.svg",
+    "banner": "/images/categories/fire-protection.svg",
+    "description": "Fire suppression, detection and alarm systems for building and site safety.",
+    "subCategories": [
+      {
+        "id": "sub-fire-protection-fire-pumps",
+        "slug": "fire-pumps",
+        "name": "Fire Pumps",
+        "categoryId": "cat-fire-protection"
+      },
+      {
+        "id": "sub-fire-protection-fire-water-pipes",
+        "slug": "fire-water-pipes",
+        "name": "Fire-Water Pipes",
+        "categoryId": "cat-fire-protection"
+      },
+      {
+        "id": "sub-fire-protection-sprinklers",
+        "slug": "sprinklers",
+        "name": "Sprinklers",
+        "categoryId": "cat-fire-protection"
+      },
+      {
+        "id": "sub-fire-protection-fire-hydrants",
+        "slug": "fire-hydrants",
+        "name": "Fire Hydrants",
+        "categoryId": "cat-fire-protection"
+      },
+      {
+        "id": "sub-fire-protection-hose-reels",
+        "slug": "hose-reels",
+        "name": "Hose Reels",
+        "categoryId": "cat-fire-protection"
+      },
+      {
+        "id": "sub-fire-protection-fire-extinguishers",
+        "slug": "fire-extinguishers",
+        "name": "Fire Extinguishers",
+        "categoryId": "cat-fire-protection"
+      },
+      {
+        "id": "sub-fire-protection-fire-alarm-panels",
+        "slug": "fire-alarm-panels",
+        "name": "Fire Alarm Panels",
+        "categoryId": "cat-fire-protection"
+      },
+      {
+        "id": "sub-fire-protection-smoke-heat-detectors",
+        "slug": "smoke-heat-detectors",
+        "name": "Smoke / Heat Detectors",
+        "categoryId": "cat-fire-protection"
+      },
+      {
+        "id": "sub-fire-protection-fire-alarm-modules",
+        "slug": "fire-alarm-modules",
+        "name": "Fire Alarm Modules",
+        "categoryId": "cat-fire-protection"
+      },
+      {
+        "id": "sub-fire-protection-fire-rated-cables",
+        "slug": "fire-rated-cables",
+        "name": "Fire-Rated Cables",
+        "categoryId": "cat-fire-protection"
+      }
+    ],
+    "facetKeys": [
+      "material",
+      "size",
+      "grade",
+      "diameter",
+      "voltage",
+      "power",
+      "finish",
+      "application"
+    ],
+    "cardAttributeKeys": [
+      "grade",
+      "diameter",
+      "material",
+      "size"
+    ]
+  }
+];

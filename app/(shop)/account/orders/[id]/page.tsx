@@ -16,7 +16,7 @@ import { cn } from "@/lib/utils/cn";
 
 export const metadata: Metadata = { title: "Order Details", robots: { index: false } };
 
-const PAY = { card: "Card", wallet: "Apple Pay / Google Pay", bnpl: "Tabby (4 instalments)", "bank-transfer": "Bank Transfer", cod: "Cash on Delivery", credit: "BuildMart Credit" };
+const PAY = { card: "Card", wallet: "Apple Pay / Google Pay", bnpl: "Tabby (4 instalments)", "bank-transfer": "Bank Transfer", cod: "Cash on Delivery", credit: "Smart-MEP Credit" };
 
 export default async function OrderDetail({ params }: { params: Promise<{ id: string }> }) {
   const user = (await getSessionUser())!;

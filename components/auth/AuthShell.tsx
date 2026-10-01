@@ -16,7 +16,7 @@ export function AuthShell({ title, subtitle, children }: { title: string; subtit
           <div className="absolute inset-0 bg-[url('/images/hero/slide-4-mobile.jpg')] bg-cover bg-center opacity-40" aria-hidden />
           <div className="absolute inset-0 bg-gradient-to-t from-primary-900 via-primary-900/85 to-primary-900/60" aria-hidden />
           <div className="relative flex h-full flex-col">
-            <p className="text-xs font-bold uppercase tracking-widest text-accent-400">BuildMart for builders</p>
+            <p className="text-xs font-bold uppercase tracking-widest text-accent-400">Smart-MEP for builders</p>
             <p className="mt-3 font-display text-3xl font-extrabold leading-tight">Everything your site needs, one account away.</p>
             <ul className="mt-8 space-y-4">
               {POINTS.map((p) => (

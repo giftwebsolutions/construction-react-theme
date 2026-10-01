@@ -1,5 +1,5 @@
 /* ============================================================================
-   BuildMart data access layer
+   Smart-MEP data access layer
    Every UI read goes through these async functions. To connect a real backend
    (Laravel / REST), replace the bodies with fetch() calls that return the same
    types — no component changes required.

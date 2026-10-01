@@ -33,7 +33,7 @@ export function MobileDrawer({ categories, user }: { categories: Category[]; use
         <div className="shrink-0 bg-primary-900 px-4 pb-4 pt-3 text-white">
           <div className="flex items-center justify-between">
             <span className="flex items-center gap-2 font-display text-lg font-extrabold">
-              <LogoMark className="size-8" /> Build<span className="text-accent-500">Mart</span>
+              <LogoMark className="size-8" /> Smart<span className="text-accent-500">-MEP</span>
             </span>
             <button type="button" onClick={close} className="-mr-2 flex size-11 items-center justify-center rounded-lg hover:bg-white/10" aria-label="Close menu">
               <X className="size-5" aria-hidden />

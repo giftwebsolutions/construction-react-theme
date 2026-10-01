@@ -54,7 +54,7 @@ const seeds: BrandSeed[] = [
   ["Udyogi", "#FBC02D", "Personal protective equipment", 1981, ["safety"]],
 ];
 
-const typeToCategoryId = (t: MaterialType) => `cat-${t}`;
+const typeToCategoryId = (t: MaterialType) => ["cement", "steel", "bricks", "aggregates", "tiles", "roofing"].includes(t) ? "cat-civil" : ["plumbing", "sanitary"].includes(t) ? "cat-plumbing" : t === "electrical" ? "cat-electrical" : t === "safety" ? "cat-fire-protection" : "cat-mechanical";
 
 export const brands: Brand[] = seeds.map(([name, color, tagline, founded, types, featured]) => ({
   id: `brand-${slugify(name)}`,
@@ -64,9 +64,11 @@ export const brands: Brand[] = seeds.map(([name, color, tagline, founded, types,
   tagline,
   description: `${name} is one of India's most trusted names in ${types
     .map((t) => t.replace("-", " & "))
-    .join(", ")}. Established in ${founded}, BuildMart sources ${name} products directly from authorised distributors so every order ships with a genuine VAT invoice and manufacturer warranty.`,
+    .join(", ")}. Established in ${founded}, Smart-MEP sources ${name} products directly from authorised distributors so every order ships with a genuine VAT invoice and manufacturer warranty.`,
   country: ["Wienerberger", "Schneider", "Saint-Gobain", "Hettich", "Bosch", "Stanley", "Fosroc"].includes(name) ? "International" : "India",
   founded,
   categoryIds: types.map(typeToCategoryId),
   isFeatured: featured,
 }));
+
+brands.push({ id: "brand-smart-mep", slug: "smart-mep", name: "Smart-MEP", color: "#0F2C5C", tagline: "Project supply solutions", description: "Smart-MEP project-series mock catalogue for airport, mechanical, electrical, plumbing, civil and fire protection procurement.", country: "UAE", founded: 2026, categoryIds: ["cat-airport-systems-and-airside", "cat-mechanical", "cat-electrical", "cat-plumbing", "cat-civil", "cat-fire-protection"], isFeatured: true });

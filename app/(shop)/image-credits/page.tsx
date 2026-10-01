@@ -3,7 +3,7 @@ import Image from "next/image";
 import { imageCredits } from "@/lib/data/credits";
 import { Breadcrumb } from "@/components/ui/Breadcrumb";
 
-export const metadata: Metadata = { title: "Image Credits", description: "Attribution for photographs used on BuildMart.", alternates: { canonical: "/image-credits" } };
+export const metadata: Metadata = { title: "Image Credits", description: "Attribution for photographs used on Smart-MEP.", alternates: { canonical: "/image-credits" } };
 
 export default function ImageCreditsPage() {
   return (

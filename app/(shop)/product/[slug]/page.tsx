@@ -73,7 +73,7 @@ export default async function ProductPage({ params, searchParams }: Props) {
       priceCurrency: "AED",
       price: product.price,
       availability: product.stock > 0 ? "https://schema.org/InStock" : "https://schema.org/OutOfStock",
-      seller: { "@type": "Organization", name: "BuildMart" },
+      seller: { "@type": "Organization", name: "Smart-MEP" },
     },
   };
 

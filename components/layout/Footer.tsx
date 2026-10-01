@@ -13,7 +13,7 @@ const TRUST = [
 ];
 
 const COMPANY = [
-  ["About BuildMart", "/about"],
+  ["About Smart-MEP", "/about"],
   ["Contact Us", "/contact"],
   ["Build Guides & Blog", "/blog"],
   ["All Brands", "/brands"],
@@ -117,7 +117,7 @@ export function Footer({ categories }: { categories: Category[] }) {
           <address className="col-span-2 space-y-3 text-sm not-italic">
             <p className="flex items-start gap-2.5">
               <MapPin className="mt-0.5 size-4 shrink-0 text-accent-400" aria-hidden />
-              BuildMart Building Materials Trading LLC, Warehouse 18, Al Quoz Industrial Area 3, Dubai, UAE
+              Smart-MEP Building Materials Trading LLC, Warehouse 18, Al Quoz Industrial Area 3, Dubai, UAE
             </p>
             <p className="flex items-center gap-2.5">
               <Phone className="size-4 text-accent-400" aria-hidden />
@@ -127,8 +127,8 @@ export function Footer({ categories }: { categories: Category[] }) {
             </p>
             <p className="flex items-center gap-2.5">
               <Mail className="size-4 text-accent-400" aria-hidden />
-              <a href="mailto:support@buildmart.ae" className="hover:text-white">
-                support@buildmart.ae
+              <a href="mailto:support@smart-mep.ae" className="hover:text-white">
+                support@smart-mep.ae
               </a>
             </p>
             <div className="flex flex-wrap gap-2 pt-2">
@@ -147,7 +147,7 @@ export function Footer({ categories }: { categories: Category[] }) {
 
       <div className="border-t border-white/10">
         <div className="container-page flex flex-col gap-4 py-6 text-xs text-primary-200 md:flex-row md:items-center md:justify-between">
-          <p>© {new Date().getFullYear()} BuildMart Supply Pvt. Ltd. · TRN 33AABCB1234C1Z5 · All prices inclusive of VAT</p>
+          <p>© {new Date().getFullYear()} Smart-MEP Supply Pvt. Ltd. · TRN 33AABCB1234C1Z5 · All prices inclusive of VAT</p>
           <div className="flex flex-wrap items-center gap-2">
             <CreditCard className="size-4" aria-hidden />
             <span className="sr-only">Payment methods:</span>

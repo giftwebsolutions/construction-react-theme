@@ -73,7 +73,7 @@ export function PurchasePanel({ product: p, brandName, initialSelection }: { pro
   };
 
   const share = async () => {
-    const data = { title: p.name, text: `${p.name} — ${formatAED(price)}${perUnit(p.unit)} on BuildMart`, url: window.location.href };
+    const data = { title: p.name, text: `${p.name} — ${formatAED(price)}${perUnit(p.unit)} on Smart-MEP`, url: window.location.href };
     if (navigator.share) {
       try {
         await navigator.share(data);
@@ -247,7 +247,7 @@ export function PurchasePanel({ product: p, brandName, initialSelection }: { pro
       <div className="flex items-start gap-3 rounded-xl border border-border p-4 text-sm">
         <Warehouse className="mt-0.5 size-5 shrink-0 text-primary-700 dark:text-primary-200" aria-hidden />
         <div>
-          <p className="font-semibold text-foreground">Sold by BuildMart Supply Pvt. Ltd.</p>
+          <p className="font-semibold text-foreground">Sold by Smart-MEP Supply Pvt. Ltd.</p>
           <p className="text-xs text-muted-foreground">Ships from Al Quoz, Dubai warehouse · Authorised {brandName} distributor</p>
           <p className="mt-1.5 flex items-center gap-1 text-xs font-medium text-success">
             <BadgeCheck className="size-3.5" aria-hidden /> VAT invoice · Genuine product guarantee

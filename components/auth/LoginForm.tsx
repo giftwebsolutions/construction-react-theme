@@ -35,7 +35,7 @@ export function LoginForm({ next }: { next: string }) {
       <p className="mb-5 flex items-start gap-2 rounded-lg bg-primary-50 p-3 text-xs text-primary-800 dark:bg-surface-muted dark:text-primary-100">
         <Info className="mt-0.5 size-4 shrink-0" aria-hidden />
         <span>
-          Demo login: <strong>demo@buildmart.ae</strong> / <strong>Build@123</strong> — or OTP login with <strong>0501234567</strong> and code <strong>123456</strong>.
+          Demo login: <strong>demo@smart-mep.ae</strong> / <strong>Build@123</strong> — or OTP login with <strong>0501234567</strong> and code <strong>123456</strong>.
         </span>
       </p>
       <Tabs defaultValue="password">
@@ -61,7 +61,7 @@ export function LoginForm({ next }: { next: string }) {
       </Tabs>
       <SocialLogin />
       <p className="mt-6 text-center text-sm text-muted-foreground">
-        New to BuildMart?{" "}
+        New to Smart-MEP?{" "}
         <Link href={`/register${next !== "/account" ? `?next=${encodeURIComponent(next)}` : ""}`} className="font-semibold text-primary-700 hover:underline dark:text-primary-200">Create an account</Link>
       </p>
     </>

@@ -9,7 +9,7 @@ const safeNext = (n?: string) => (n && n.startsWith("/") && !n.startsWith("//") 
 export default async function LoginPage({ searchParams }: { searchParams: Promise<{ next?: string }> }) {
   const { next } = await searchParams;
   return (
-    <AuthShell title="Login to BuildMart" subtitle="Track orders, manage site addresses and get project pricing.">
+    <AuthShell title="Login to Smart-MEP" subtitle="Track orders, manage site addresses and get project pricing.">
       <LoginForm next={safeNext(next)} />
     </AuthShell>
   );

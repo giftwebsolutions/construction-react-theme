@@ -43,7 +43,7 @@ export default async function AccountOverview() {
       {user.isVerifiedContractor && user.creditLimit && (
         <div className="flex flex-col gap-3 rounded-xl bg-gradient-to-r from-primary-800 to-primary-600 p-5 text-white sm:flex-row sm:items-center sm:justify-between">
           <div>
-            <p className="text-xs font-bold uppercase tracking-wider text-accent-400">BuildMart Credit</p>
+            <p className="text-xs font-bold uppercase tracking-wider text-accent-400">Smart-MEP Credit</p>
             <p className="mt-1 font-display text-2xl font-bold">{formatAED(user.creditLimit - 142000)} available</p>
             <p className="text-xs text-primary-100">of {formatAED(user.creditLimit)} limit · 30-day terms · next due 15 Oct</p>
           </div>

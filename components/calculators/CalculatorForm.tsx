@@ -30,12 +30,12 @@ import { formatNumber } from "@/lib/utils/format";
 import { cn } from "@/lib/utils/cn";
 
 const SHOP: Record<CalculatorType, { label: string; href: string }[]> = {
-  cement: [{ label: "Cement", href: "/category/cement-and-concrete" }, { label: "M-Sand", href: "/category/sand-and-aggregates?sub=m-sand" }, { label: "Aggregate", href: "/category/sand-and-aggregates?sub=aggregate" }],
-  bricks: [{ label: "Bricks & Blocks", href: "/category/bricks-and-blocks" }, { label: "Cement", href: "/category/cement-and-concrete" }],
-  tiles: [{ label: "Tiles", href: "/category/tiles-and-flooring" }, { label: "Tile Adhesive", href: "/category/waterproofing-and-chemicals?sub=tile-adhesive" }],
-  paint: [{ label: "Paints", href: "/category/paints-and-coatings" }, { label: "Putty", href: "/category/paints-and-coatings?sub=putty" }],
-  steel: [{ label: "TMT Bars", href: "/category/steel-and-tmt?sub=tmt-bars" }, { label: "Binding Wire", href: "/category/steel-and-tmt?sub=binding-wire" }],
-  sand: [{ label: "Sand", href: "/category/sand-and-aggregates" }, { label: "Cement", href: "/category/cement-and-concrete" }],
+  cement: [{ label: "Cement", href: "/category/civil" }, { label: "M-Sand", href: "/category/civil?sub=m-sand" }, { label: "Aggregate", href: "/category/civil?sub=aggregate" }],
+  bricks: [{ label: "Bricks & Blocks", href: "/category/civil" }, { label: "Cement", href: "/category/civil" }],
+  tiles: [{ label: "Tiles", href: "/category/civil" }, { label: "Tile Adhesive", href: "/category/mechanical?sub=tile-adhesive" }],
+  paint: [{ label: "Paints", href: "/category/mechanical" }, { label: "Putty", href: "/category/mechanical?sub=putty" }],
+  steel: [{ label: "TMT Bars", href: "/category/civil?sub=tmt-bars" }, { label: "Binding Wire", href: "/category/civil?sub=binding-wire" }],
+  sand: [{ label: "Sand", href: "/category/civil" }, { label: "Cement", href: "/category/civil" }],
 };
 
 const n = (s: string) => {

@@ -16,18 +16,18 @@ const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000";
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: "BuildMart — Construction Materials Online | Cement, Steel, Tiles & More",
-    template: "%s | BuildMart",
+    default: "Smart-MEP — Airport, MEP & Civil Project Supplies",
+    template: "%s | Smart-MEP",
   },
   description:
-    "Buy genuine cement, TMT steel, bricks, sand, tiles, paints, plumbing and electrical materials online with VAT invoice, bulk pricing and site delivery across the UAE.",
-  applicationName: "BuildMart",
+    "Shop airport systems, mechanical, electrical, plumbing, civil and fire protection supplies with VAT invoices, bulk pricing and site delivery across the UAE.",
+  applicationName: "Smart-MEP",
   keywords: ["construction materials", "cement price", "TMT bars", "AAC blocks", "M-Sand", "tiles", "building materials online UAE", "Dubai building materials"],
   openGraph: {
     type: "website",
-    siteName: "BuildMart",
+    siteName: "Smart-MEP",
     locale: "en_AE",
-    images: [{ url: "/images/og-default.svg", width: 1200, height: 630, alt: "BuildMart" }],
+    images: [{ url: "/images/og-default.svg", width: 1200, height: 630, alt: "Smart-MEP" }],
   },
   twitter: { card: "summary_large_image" },
   formatDetection: { telephone: false },

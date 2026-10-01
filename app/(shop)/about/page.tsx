@@ -3,7 +3,7 @@ import { BadgeCheck, Building2, Truck, Users } from "lucide-react";
 import { Breadcrumb } from "@/components/ui/Breadcrumb";
 import { ButtonLink } from "@/components/ui/Button";
 
-export const metadata: Metadata = { title: "About Us", description: "BuildMart makes buying construction materials simple, transparent and site-ready.", alternates: { canonical: "/about" } };
+export const metadata: Metadata = { title: "About Us", description: "Smart-MEP makes buying construction materials simple, transparent and site-ready.", alternates: { canonical: "/about" } };
 
 const STATS = [
   { v: "12,000+", l: "Builders & homeowners served" },
@@ -19,7 +19,7 @@ export default function AboutPage() {
       <section className="mt-4 overflow-hidden rounded-2xl bg-primary-900 px-6 py-12 text-white sm:px-12 sm:py-16">
         <p className="text-xs font-bold uppercase tracking-widest text-accent-400">Our story</p>
         <h1 className="mt-3 max-w-3xl text-3xl font-extrabold leading-tight sm:text-5xl">Building materials, bought the way builders actually work.</h1>
-        <p className="mt-4 max-w-2xl text-primary-100">Started in Dubai in 2021 by a civil engineer and a third-generation building-materials trader, BuildMart brings transparent prices, genuine brands and reliable site delivery to contractors and homeowners across all seven emirates.</p>
+        <p className="mt-4 max-w-2xl text-primary-100">Started in Dubai in 2021 by a civil engineer and a third-generation building-materials trader, Smart-MEP brings transparent prices, genuine brands and reliable site delivery to contractors and homeowners across all seven emirates.</p>
       </section>
       <ul className="mt-8 grid grid-cols-2 gap-4 lg:grid-cols-4">
         {STATS.map((s) => (

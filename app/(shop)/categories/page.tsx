@@ -6,7 +6,7 @@ import { getCategories, getSubCategoryCounts } from "@/lib/data";
 import { Breadcrumb } from "@/components/ui/Breadcrumb";
 import { CategoryIcon } from "@/components/ui/CategoryIcon";
 
-export const metadata: Metadata = { title: "All Categories", description: "Browse all construction material categories at BuildMart.", alternates: { canonical: "/categories" } };
+export const metadata: Metadata = { title: "All Categories", description: "Browse all construction material categories at Smart-MEP.", alternates: { canonical: "/categories" } };
 
 export default async function CategoriesPage() {
   const categories = await getCategories();
@@ -15,7 +15,7 @@ export default async function CategoriesPage() {
     <div className="container-page py-4 lg:py-6">
       <Breadcrumb items={[{ label: "All Categories" }]} />
       <h1 className="mt-3 text-2xl font-bold text-foreground sm:text-3xl">All Categories</h1>
-      <p className="mt-1 text-sm text-muted-foreground">16 categories · everything from foundation to finishing</p>
+      <p className="mt-1 text-sm text-muted-foreground">{categories.length} categories · airport, MEP and civil project supplies</p>
       <ul className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
         {categories.map((c, i) => (
           <li key={c.id} className="flex flex-col overflow-hidden rounded-xl border border-border bg-surface shadow-card">
@@ -35,7 +35,7 @@ export default async function CategoriesPage() {
               {c.subCategories.map((s) => (
                 <li key={s.id}>
                   <Link href={`/category/${c.slug}?sub=${s.slug}`} className="flex justify-between gap-2 py-1 text-muted-foreground hover:text-primary-700 dark:hover:text-primary-200">
-                    <span className="truncate">{s.name}</span>
+                    <span>{s.name}</span>
                     <span className="text-xs tabular-nums">{counts[i]![s.id] ?? 0}</span>
                   </Link>
                 </li>

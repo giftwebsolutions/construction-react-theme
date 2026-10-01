@@ -61,7 +61,7 @@ export function SecurityForms() {
   const pw = useWatch({ control, name: "password" }) ?? "";
   const [sessions, setSessions] = useState([
     { id: "s1", icon: Laptop, device: "Chrome on macOS", place: "Dubai, UAE", when: "Active now", current: true },
-    { id: "s2", icon: Smartphone, device: "BuildMart app · Android", place: "Sharjah, UAE", when: "2 hours ago", current: false },
+    { id: "s2", icon: Smartphone, device: "Smart-MEP app · Android", place: "Sharjah, UAE", when: "2 hours ago", current: false },
     { id: "s3", icon: Smartphone, device: "Safari on iPhone", place: "Abu Dhabi, UAE", when: "3 days ago", current: false },
   ]);
   const onSubmit = handleSubmit(async () => {

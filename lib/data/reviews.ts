@@ -12,7 +12,7 @@ const ROLES: CustomerRole[] = ["Contractor", "Homeowner", "Builder", "Engineer",
 
 const POSITIVE: [string, string][] = [
   ["Genuine product, delivered on time", "Batch date was recent and the packaging was intact. Delivery slot was honoured and the driver helped with unloading."],
-  ["Best price in the area", "Compared with three local dealers — BuildMart was cheaper once bulk pricing kicked in, and the VAT invoice was a bonus."],
+  ["Best price in the area", "Compared with three local dealers — Smart-MEP was cheaper once bulk pricing kicked in, and the VAT invoice was a bonus."],
   ["Quality as described", "Exactly matches the specifications listed. Our site engineer checked the certificate and was satisfied."],
   ["Will order again", "Smooth ordering from my phone at site. Tracking updates were accurate and support answered on WhatsApp quickly."],
   ["Good for our project", "Used this for a G+1 residential project. Consistent quality across all lots we received."],
@@ -75,7 +75,7 @@ export function generateQuestions(product: Product): Question[] {
     question,
     answer,
     askedBy: pick(rand, NAMES),
-    answeredBy: "BuildMart Materials Team",
+    answeredBy: "Smart-MEP Materials Team",
     date: new Date(CATALOGUE_DATE.getTime() - Math.floor(rand() * 180) * 86_400_000).toISOString(),
   }));
 }

@@ -2,14 +2,14 @@ import type { Address, Notification, Order, OrderEvent, OrderStatus, Project, Qu
 import { products } from "./products";
 import { round2 } from "@/lib/utils/pricing";
 
-/* Demo credentials for mock auth: demo@buildmart.ae / Build@123 */
+/* Demo credentials for mock auth: demo@smart-mep.ae / Build@123 */
 export const DEMO_PASSWORD = "Build@123";
 
 export const users: User[] = [
   {
     id: "u-1001",
     name: "Omar Al Mansoori",
-    email: "demo@buildmart.ae",
+    email: "demo@smart-mep.ae",
     phone: "501234567",
     accountType: "contractor",
     company: "Al Mansoori Contracting LLC",
@@ -108,15 +108,15 @@ const seeds: OrderSeed[] = [
   { id: "ord-24091", createdAt: "2026-09-25T10:12:00+04:00", status: "confirmed", address: addresses[0]!, projectId: "prj-1", payment: "credit",
     lines: [["ultratech-opc-53-grade-cement", 120], ["tata-tiscon-550sd-tmt-bar", 1500], ["robo-m-sand-for-concrete-double-washed", 16]] },
   { id: "ord-24077", createdAt: "2026-09-19T16:40:00+04:00", status: "out-for-delivery", address: addresses[1]!, projectId: "prj-2", payment: "wallet",
-    lines: [["magicrete-aac-block-600-200-150-mm", 800], ["asian-paints-smartcare-tile-adhesive-type-2-20-kg", 40]] },
+    lines: [["magicrete-aac-block-600-200-150-mm", 800], ["mechanical-gi-ductwork-project-series", 40]] },
   { id: "ord-24012", createdAt: "2026-09-02T09:05:00+04:00", status: "delivered", address: addresses[0]!, projectId: "prj-1", payment: "bank-transfer",
-    lines: [["havells-lifeline-plus-hrfr-house-wire-90-m", 12], ["anchor-roma-classic-6a-switch-pack-of-20", 3], ["finolex-rigid-pvc-conduit-pipe-25-mm-3-m-pack-of-10", 6]] },
+    lines: [["havells-lifeline-plus-hrfr-house-wire-90-m", 12], ["electrical-main-switchboards-project-series", 3], ["finolex-rigid-pvc-conduit-pipe-25-mm-3-m-pack-of-10", 6]] },
   { id: "ord-23954", createdAt: "2026-08-14T12:30:00+04:00", status: "delivered", address: addresses[1]!, projectId: "prj-2", payment: "credit",
     lines: [["ramco-supergrade-ppc-cement", 300], ["blue-metal-aggregate-20-mm", 25]] },
   { id: "ord-23870", createdAt: "2026-07-22T11:00:00+04:00", status: "delivered", address: addresses[2]!, projectId: "prj-3", payment: "card",
-    lines: [["jaquar-florentine-prime-single-lever-basin-mixer", 2], ["cera-table-top-wash-basin-600-mm", 2], ["kajaria-eternity-vitrified-tile-600-600-mm-statuario-glossy", 22]] },
+    lines: [["jaquar-florentine-prime-single-lever-basin-mixer", 2], ["cera-table-top-wash-basin-600-mm", 2], ["plumbing-water-heaters-project-series", 22]] },
   { id: "ord-23811", createdAt: "2026-07-03T15:20:00+04:00", status: "cancelled", address: addresses[0]!, payment: "cod",
-    lines: [["bosch-gsb-600-professional-impact-drill-kit", 1]] },
+    lines: [["mechanical-ahu-project-series", 1]] },
 ];
 
 export const orders: Order[] = seeds.map((s) => {
@@ -190,6 +190,6 @@ export const quotes: QuoteRequest[] = [
 export const notifications: Notification[] = [
   { id: "n1", userId: "u-1001", kind: "order", title: "Order BM24077 is out for delivery", body: "Driver Imran (+971 55 xxx 4421) will reach Site B between 2–5 PM.", date: "2026-09-27T09:30:00+04:00", read: false, href: "/account/orders/ord-24077" },
   { id: "n2", userId: "u-1001", kind: "quote", title: "Quote QT-5521 is ready", body: "Your project quote of AED 125,300 is valid till 7 Oct.", date: "2026-09-24T15:10:00+04:00", read: false, href: "/account/quotes" },
-  { id: "n3", userId: "u-1001", kind: "offer", title: "Steel prices dropped AED 0.10/kg", body: "Tata Tiscon and JSW Fe550D now at lower tier prices for 5 tonne+ orders.", date: "2026-09-21T08:00:00+04:00", read: true, href: "/category/steel-and-tmt" },
+  { id: "n3", userId: "u-1001", kind: "offer", title: "Steel prices dropped AED 0.10/kg", body: "Tata Tiscon and JSW Fe550D now at lower tier prices for 5 tonne+ orders.", date: "2026-09-21T08:00:00+04:00", read: true, href: "/category/civil" },
   { id: "n4", userId: "u-1001", kind: "account", title: "Credit limit increased", body: "Your Pay Later limit is now AED 22,000.", date: "2026-09-10T11:00:00+04:00", read: true, href: "/account/profile" },
 ];

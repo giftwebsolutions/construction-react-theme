@@ -1,8 +1,9 @@
+import { buildSmartCatalogue } from "./smart-catalogue";
 import type { MaterialType, Product } from "@/types";
 import { fromINR, slugify } from "@/lib/utils/format";
 import { hashString, seeded } from "@/lib/utils/random";
 import { unitLabel } from "@/lib/utils/units";
-import { categories, attributeLabel } from "./categories";
+import { legacyCategories as categories, attributeLabel } from "./categories";
 import { brands } from "./brands";
 import type { ProductSeed } from "./seed/types";
 import { cement } from "./seed/cement";
@@ -64,7 +65,7 @@ function buildDescription(seed: ProductSeed, brandName: string, categoryName: st
   return [
     `${seed.short}${hl}`,
     `Sourced directly from ${brandName}'s authorised distribution network, every unit ships with a VAT invoice and full manufacturer warranty. Prices shown are per ${unit} and include VAT; bulk tiers apply automatically in your cart.`,
-    `BuildMart stocks ${categoryName.toLowerCase()} at regional warehouses for fast site delivery. Need a larger quantity or a project rate? Use "Request Bulk Quote" and our materials team will respond within 2 working hours.`,
+    `Smart-MEP stocks ${categoryName.toLowerCase()} at regional warehouses for fast site delivery. Need a larger quantity or a project rate? Use "Request Bulk Quote" and our materials team will respond within 2 working hours.`,
   ].join("\n\n");
 }
 
@@ -196,4 +197,4 @@ function buildProducts(): Product[] {
   return out;
 }
 
-export const products: Product[] = buildProducts();
+export const products: Product[] = buildSmartCatalogue(buildProducts());

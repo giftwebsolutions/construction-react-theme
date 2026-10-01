@@ -139,6 +139,9 @@ export interface Category {
 }
 
 export type CategoryIconName =
+  | "plane"
+  | "fan"
+  | "flame"
   | "factory"
   | "construction"
   | "brick-wall"

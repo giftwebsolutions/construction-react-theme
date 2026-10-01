@@ -3,7 +3,7 @@ import Link from "next/link";
 import { Accordion } from "@/components/ui/Accordion";
 import { Breadcrumb } from "@/components/ui/Breadcrumb";
 
-export const metadata: Metadata = { title: "FAQs", description: "Answers about ordering, delivery, VAT invoices, payments and returns at BuildMart.", alternates: { canonical: "/faq" } };
+export const metadata: Metadata = { title: "FAQs", description: "Answers about ordering, delivery, VAT invoices, payments and returns at Smart-MEP.", alternates: { canonical: "/faq" } };
 
 const GROUPS = [
   { id: "orders", title: "Orders & pricing", items: [
@@ -18,7 +18,7 @@ const GROUPS = [
   ] },
   { id: "vat", title: "VAT invoice & payments", items: [
     ["How do I get a VAT invoice with my TRN?", "Tick “Use TRN for business invoice” at checkout, or save your TRN in your profile. You can claim input tax credit on eligible purchases."],
-    ["Which payment methods are available?", "Visa and Mastercard, Apple Pay, Google Pay, Tabby instalments, bank transfer and cash on delivery (up to AED 2,500). Verified contractors can use BuildMart Credit with 30-day terms."],
+    ["Which payment methods are available?", "Visa and Mastercard, Apple Pay, Google Pay, Tabby instalments, bank transfer and cash on delivery (up to AED 2,500). Verified contractors can use Smart-MEP Credit with 30-day terms."],
   ] },
   { id: "returns", title: "Returns & quality", items: [
     ["What if material arrives damaged?", "Report within 48 hours with photos from your account or WhatsApp. We replace or refund damaged units."],

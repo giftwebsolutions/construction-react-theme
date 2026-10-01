@@ -158,7 +158,7 @@ export function CheckoutFlow({ user, savedAddresses }: { user: User; savedAddres
     { value: "cod", label: "Cash on Delivery", desc: totals.grandTotal > 2500 ? "Available for orders up to AED 2,500" : "Pay when material arrives", icon: <Banknote />, disabled: totals.grandTotal > 2500 },
     {
       value: "credit",
-      label: "BuildMart Credit (Pay Later)",
+      label: "Smart-MEP Credit (Pay Later)",
       desc: user.isVerifiedContractor ? `30-day credit · limit ${formatAED(user.creditLimit ?? 0)}` : "For verified contractors only",
       icon: <HandCoins />,
       disabled: !user.isVerifiedContractor,

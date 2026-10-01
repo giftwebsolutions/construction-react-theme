@@ -1,7 +1,8 @@
-import { BrickWall, Construction, DoorOpen, Drill, Droplets, Factory, Grid2x2, Hammer, HardHat, House, Mountain, PaintRoller, Pipette, Plug, ShowerHead, Trees, type LucideProps } from "lucide-react";
+import { Plane, Fan, Flame, BrickWall, Construction, DoorOpen, Drill, Droplets, Factory, Grid2x2, Hammer, HardHat, House, Mountain, PaintRoller, Pipette, Plug, ShowerHead, Trees, type LucideProps } from "lucide-react";
 import type { CategoryIconName } from "@/types";
 
 const ICONS: Record<CategoryIconName, React.ComponentType<LucideProps>> = {
+  plane: Plane, fan: Fan, flame: Flame,
   factory: Factory,
   construction: Construction,
   "brick-wall": BrickWall,

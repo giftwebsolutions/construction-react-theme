@@ -13,10 +13,10 @@ export function LogoMark({ className }: { className?: string }) {
 
 export function Logo({ tone = "dark", className }: { tone?: "dark" | "light"; className?: string }) {
   return (
-    <Link href="/" className={cn("inline-flex items-center gap-2 rounded-lg", className)} aria-label="BuildMart home">
+    <Link href="/" className={cn("inline-flex items-center gap-2 rounded-lg", className)} aria-label="Smart-MEP home">
       <LogoMark />
       <span className={cn("font-display text-xl font-extrabold tracking-tight", tone === "light" ? "text-white" : "text-primary-800 dark:text-white")}>
-        Build<span className="text-accent-500">Mart</span>
+        Smart<span className="text-accent-500">-MEP</span>
       </span>
     </Link>
   );

@@ -6,7 +6,7 @@ import { getBlogPosts } from "@/lib/data";
 import { formatDate } from "@/lib/utils/format";
 import { Breadcrumb } from "@/components/ui/Breadcrumb";
 
-export const metadata: Metadata = { title: "Build Guides & Blog", description: "Practical guides on cement, steel, tiles, waterproofing and more from BuildMart's engineers.", alternates: { canonical: "/blog" } };
+export const metadata: Metadata = { title: "Build Guides & Blog", description: "Practical guides on cement, steel, tiles, waterproofing and more from Smart-MEP's engineers.", alternates: { canonical: "/blog" } };
 
 export default async function BlogPage({ searchParams }: { searchParams: Promise<{ category?: string }> }) {
   const { category } = await searchParams;
