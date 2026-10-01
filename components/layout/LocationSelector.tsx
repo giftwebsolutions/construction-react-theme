@@ -8,7 +8,7 @@ import { EMIRATES, SERVICE_AREAS, areaLabel } from "@/lib/data/locations";
 import { cn } from "@/lib/utils/cn";
 import { toast } from "@/store/toast";
 
-const DEFAULT_LABEL = "Al Quoz, Dubai";
+const DEFAULT_LABEL = "Riyadh, Kingdom of Saudi Arabia"; // Default label for the delivery location
 
 export function LocationSelector({ tone = "dark", className }: { tone?: "dark" | "light"; className?: string }) {
   const hydrated = useHydrated();
