@@ -3,7 +3,7 @@ import { Headphones, PackageSearch, Warehouse } from "lucide-react";
 import { LanguageSelect } from "./LanguageSelect";
 import { LocationSelector } from "./LocationSelector";
 
-export const HELPLINE = "800 284 5362";
+export const HELPLINE = "800 000 0003";
 
 export function TopBar() {
   return (

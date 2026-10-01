@@ -117,7 +117,7 @@ export function Footer({ categories }: { categories: Category[] }) {
           <address className="col-span-2 space-y-3 text-sm not-italic">
             <p className="flex items-start gap-2.5">
               <MapPin className="mt-0.5 size-4 shrink-0 text-accent-400" aria-hidden />
-              Smart-MEP Building Materials Trading LLC, Warehouse 18, Al Quoz Industrial Area 3, Dubai, UAE
+              Emirates Building, Riyadh, Kingdom of Saudi Arabia.
             </p>
             <p className="flex items-center gap-2.5">
               <Phone className="size-4 text-accent-400" aria-hidden />
