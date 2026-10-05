@@ -11,7 +11,7 @@ import { useDeliveryLocation } from "@/store/ui";
 import { toast } from "@/store/toast";
 import { lookupArea } from "@/lib/data/locations";
 import { computeCartTotals, lineTotal, unitPriceFor } from "@/lib/utils/cart";
-import { formatAED } from "@/lib/utils/format";
+import { formatSAR } from "@/lib/utils/format";
 import { nextTier } from "@/lib/utils/pricing";
 import { formatQty, formatWeight, perUnit } from "@/lib/utils/units";
 import { useHydrated } from "@/lib/hooks/use-hydrated";
@@ -80,7 +80,7 @@ export function CartView({ recommendations }: { recommendations: ProductCardData
                   {g.type === "truck" ? "Truck delivery to site" : "Parcel delivery"} ({g.items.length})
                 </h2>
                 <p className="text-xs text-muted-foreground">
-                  Est. {g.etaDays}–{g.etaDays + 1} days · {formatWeight(g.weightKg)} · {g.charge ? `${formatAED(g.charge)} delivery` : "Free delivery"}
+                  Est. {g.etaDays}–{g.etaDays + 1} days · {formatWeight(g.weightKg)} · {g.charge ? `${formatSAR(g.charge)} delivery` : "Free delivery"}
                 </p>
               </header>
               <ul className="divide-y divide-border">
@@ -98,22 +98,22 @@ export function CartView({ recommendations }: { recommendations: ProductCardData
                             <Link href={`/product/${i.slug}`} className="line-clamp-2 text-sm font-semibold text-foreground hover:text-primary-700 sm:text-base">{i.name}</Link>
                             {i.variant && <p className="mt-0.5 text-xs text-muted-foreground">{Object.entries(i.variant).map(([k, v]) => `${k}: ${v}`).join(" · ")}</p>}
                           </div>
-                          <p className="hidden text-right font-display text-lg font-bold tabular-nums text-foreground sm:block">{formatAED(lineTotal(i))}</p>
+                          <p className="hidden text-right font-display text-lg font-bold tabular-nums text-foreground sm:block">{formatSAR(lineTotal(i))}</p>
                         </div>
                         <p className="mt-1 text-sm text-foreground">
-                          {formatAED(unitPriceFor(i))}
+                          {formatSAR(unitPriceFor(i))}
                           <span className="text-xs text-muted-foreground">{perUnit(i.unit)}</span>
                           {unitPriceFor(i) < i.basePrice && <span className="ml-2 text-xs font-semibold text-success">Bulk price</span>}
-                          {i.mrp > unitPriceFor(i) && <span className="ml-2 text-xs text-muted-foreground line-through">{formatAED(i.mrp)}</span>}
+                          {i.mrp > unitPriceFor(i) && <span className="ml-2 text-xs text-muted-foreground line-through">{formatSAR(i.mrp)}</span>}
                         </p>
                         {upcoming && (
                           <button type="button" onClick={() => setQty(i.key, upcoming.minQty)} className="mt-1 text-left text-xs text-primary-700 hover:underline dark:text-primary-200">
-                            Add {formatQty(upcoming.minQty - i.quantity, i.unit)} more for {formatAED(upcoming.pricePerUnit)}{perUnit(i.unit)}
+                            Add {formatQty(upcoming.minQty - i.quantity, i.unit)} more for {formatSAR(upcoming.pricePerUnit)}{perUnit(i.unit)}
                           </button>
                         )}
                         <div className="mt-3 flex flex-wrap items-center justify-between gap-3">
                           <QuantityStepper value={i.quantity} onChange={(q) => setQty(i.key, q)} min={i.minOrderQty} step={i.stepQty} size="sm" label={`Quantity for ${i.name}`} />
-                          <p className="font-display text-base font-bold tabular-nums text-foreground sm:hidden">{formatAED(lineTotal(i))}</p>
+                          <p className="font-display text-base font-bold tabular-nums text-foreground sm:hidden">{formatSAR(lineTotal(i))}</p>
                         </div>
                         <div className="mt-3 flex flex-wrap gap-x-4 gap-y-1 text-xs font-semibold">
                           <button type="button" onClick={() => saveForLater(i.key)} className="inline-flex min-h-8 items-center gap-1.5 text-muted-foreground hover:text-foreground"><Bookmark className="size-3.5" aria-hidden /> Save for later</button>
@@ -167,7 +167,7 @@ export function CartView({ recommendations }: { recommendations: ProductCardData
       {/* Mobile checkout bar */}
       <div className="fixed inset-x-0 bottom-[calc(4rem+env(safe-area-inset-bottom))] z-30 flex items-center gap-3 border-t border-border bg-surface/95 px-4 py-3 backdrop-blur lg:hidden">
         <div className="flex-1">
-          <p className="font-display text-lg font-bold leading-none text-foreground">{formatAED(totals.grandTotal)}</p>
+          <p className="font-display text-lg font-bold leading-none text-foreground">{formatSAR(totals.grandTotal)}</p>
           <p className="mt-0.5 text-xs text-muted-foreground">{totals.lineCount} items · incl. VAT & delivery</p>
         </div>
         <ButtonLink href="/checkout" variant="accent">Checkout</ButtonLink>
@@ -188,7 +188,7 @@ function SavedList({ saved, moveToCart, removeSaved }: { saved: ReturnType<typeo
             <span className="relative size-14 shrink-0 overflow-hidden rounded-lg bg-surface-muted"><Image src={i.image} alt="" fill sizes="56px" className="object-cover" /></span>
             <div className="min-w-0 flex-1">
               <Link href={`/product/${i.slug}`} className="line-clamp-1 text-sm font-semibold text-foreground">{i.name}</Link>
-              <p className="text-xs text-muted-foreground">{formatAED(i.basePrice)}{perUnit(i.unit)} · {formatQty(i.quantity, i.unit)}</p>
+              <p className="text-xs text-muted-foreground">{formatSAR(i.basePrice)}{perUnit(i.unit)} · {formatQty(i.quantity, i.unit)}</p>
             </div>
             <Button size="sm" variant="outline" onClick={() => moveToCart(i.key)}>Move to cart</Button>
             <button type="button" onClick={() => removeSaved(i.key)} className="rounded-lg p-2 text-muted-foreground hover:text-danger" aria-label={`Remove ${i.name}`}><Trash2 className="size-4" aria-hidden /></button>

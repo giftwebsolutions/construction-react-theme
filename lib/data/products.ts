@@ -1,6 +1,6 @@
 import { buildSmartCatalogue } from "./smart-catalogue";
 import type { MaterialType, Product } from "@/types";
-import { fromINR, slugify } from "@/lib/utils/format";
+import { fromSeedPrice, slugify } from "@/lib/utils/format";
 import { hashString, seeded } from "@/lib/utils/random";
 import { unitLabel } from "@/lib/utils/units";
 import { legacyCategories as categories, attributeLabel } from "./categories";
@@ -69,16 +69,16 @@ function buildDescription(seed: ProductSeed, brandName: string, categoryName: st
   ].join("\n\n");
 }
 
-/** Seeds are authored in INR; convert every money field to AED before anything else reads it. */
-function toAEDSeed(seed: ProductSeed): ProductSeed {
+/** Normalize legacy fixtures once, preserving the template sample prices in SAR. */
+function toSARSeed(seed: ProductSeed): ProductSeed {
   return {
     ...seed,
-    price: fromINR(seed.price),
-    mrp: fromINR(seed.mrp),
-    tiers: seed.tiers?.map(([q, p]) => [q, fromINR(p)] as [number, number]),
+    price: fromSeedPrice(seed.price),
+    mrp: fromSeedPrice(seed.mrp),
+    tiers: seed.tiers?.map(([q, p]) => [q, fromSeedPrice(p)] as [number, number]),
     variants: seed.variants?.map((v) => ({
       ...v,
-      options: v.options.map((o) => ({ ...o, price: o.price && fromINR(o.price), mrp: o.mrp && fromINR(o.mrp) })),
+      options: v.options.map((o) => ({ ...o, price: o.price && fromSeedPrice(o.price), mrp: o.mrp && fromSeedPrice(o.mrp) })),
     })),
   };
 }
@@ -90,7 +90,7 @@ function buildProducts(): Product[] {
 
   for (const [type, seeds] of SEEDS) {
     const category = categories.find((c) => c.materialType === type)!;
-    seeds.map(toAEDSeed).forEach((seed, i) => {
+    seeds.map(toSARSeed).forEach((seed, i) => {
       g++;
       const brand = brands.find((b) => b.slug === seed.brand);
       if (!brand) throw new Error(`Unknown brand "${seed.brand}" for ${seed.name}`);

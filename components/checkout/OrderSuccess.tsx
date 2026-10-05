@@ -5,7 +5,7 @@ import { useSyncExternalStore } from "react";
 import { CalendarDays, CheckCircle2, CreditCard, Download, MapPin, Package } from "lucide-react";
 import type { LastOrder } from "./CheckoutFlow";
 import { ButtonLink } from "@/components/ui/Button";
-import { formatDate, formatAED } from "@/lib/utils/format";
+import { formatDate, formatSAR } from "@/lib/utils/format";
 
 const read = () => {
   try {
@@ -37,7 +37,7 @@ export function OrderSuccess({ orderNumber }: { orderNumber: string }) {
               <div className="flex gap-3"><CalendarDays className="mt-0.5 size-4.5 shrink-0 text-primary-700 dark:text-primary-200" aria-hidden /><div><dt className="text-xs text-muted-foreground">Expected delivery</dt><dd className="font-semibold text-foreground">{formatDate(order.date, { weekday: "long", day: "numeric", month: "short" })}, {order.slot}</dd></div></div>
               <div className="flex gap-3"><MapPin className="mt-0.5 size-4.5 shrink-0 text-primary-700 dark:text-primary-200" aria-hidden /><div><dt className="text-xs text-muted-foreground">Delivering to</dt><dd className="font-semibold text-foreground">{order.address}</dd></div></div>
               <div className="flex gap-3"><CreditCard className="mt-0.5 size-4.5 shrink-0 text-primary-700 dark:text-primary-200" aria-hidden /><div><dt className="text-xs text-muted-foreground">Payment</dt><dd className="font-semibold text-foreground">{order.payment}</dd></div></div>
-              <div className="flex gap-3"><Package className="mt-0.5 size-4.5 shrink-0 text-primary-700 dark:text-primary-200" aria-hidden /><div><dt className="text-xs text-muted-foreground">Order total</dt><dd className="font-display text-lg font-bold text-foreground">{formatAED(order.total)}</dd></div></div>
+              <div className="flex gap-3"><Package className="mt-0.5 size-4.5 shrink-0 text-primary-700 dark:text-primary-200" aria-hidden /><div><dt className="text-xs text-muted-foreground">Order total</dt><dd className="font-display text-lg font-bold text-foreground">{formatSAR(order.total)}</dd></div></div>
             </dl>
             <ul className="mt-4 divide-y divide-border rounded-xl border border-border">
               {order.items.map((i) => (

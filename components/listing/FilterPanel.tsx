@@ -5,7 +5,7 @@ import { ChevronDown, Search } from "lucide-react";
 import type { Facet, PriceRange, ProductQuery } from "@/types";
 import { Checkbox } from "@/components/ui/Checkbox";
 import { cn } from "@/lib/utils/cn";
-import { formatAED } from "@/lib/utils/format";
+import { formatSAR } from "@/lib/utils/format";
 import { SINGLE_CHOICE, applyFacet, isSelected } from "./filter-state";
 
 interface Props {
@@ -139,7 +139,7 @@ function PriceFilter({ range, query, onChange }: { range: PriceRange; query: Pro
         <button type="submit" className="h-9 shrink-0 rounded-lg bg-primary-800 px-3 text-xs font-semibold text-white hover:bg-primary-600">Go</button>
       </form>
       <p className="mt-2 text-xs text-muted-foreground">
-        {formatAED(range.min)} – {formatAED(range.max)}
+        {formatSAR(range.min)} – {formatSAR(range.max)}
       </p>
     </fieldset>
   );

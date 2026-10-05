@@ -25,7 +25,7 @@ export function tierPrice(basePrice: number, qty: number, tiers?: TierPrice[]) {
   return match ? Math.min(match.pricePerUnit, basePrice) : basePrice;
 }
 
-/** Next cheaper tier the buyer could reach, for "AED 17.25/bag for 100+" hints. */
+/** Next cheaper tier the buyer could reach, for "SAR 17.25/bag for 100+" hints. */
 export function nextTier(qty: number, tiers?: TierPrice[]) {
   if (!tiers?.length) return undefined;
   return [...tiers].sort((a, b) => a.minQty - b.minQty).find((t) => t.minQty > qty);
@@ -64,7 +64,7 @@ export function calcVAT(lines: VatLine[]): VatBreakup {
   return { taxable, totalTax, byRate };
 }
 
-/** Delivery fee rules (mock): parcel free above AED 100; truck by weight band. */
+/** Delivery fee rules (mock): parcel free above SAR 100; truck by weight band. */
 export function deliveryCharge(type: "parcel" | "truck", subtotal: number, weightKg: number) {
   if (type === "parcel") return subtotal >= 100 ? 0 : 5;
   if (subtotal >= 2500) return 0;

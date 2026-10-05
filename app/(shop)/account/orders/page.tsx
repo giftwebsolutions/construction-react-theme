@@ -4,7 +4,7 @@ import Link from "next/link";
 import { ChevronRight, Package } from "lucide-react";
 import { getSessionUser } from "@/lib/auth/session";
 import { getOrders, getProjects } from "@/lib/data";
-import { formatDate, formatAED } from "@/lib/utils/format";
+import { formatDate, formatSAR } from "@/lib/utils/format";
 import { OrderStatusBadge } from "@/components/account/StatusBadge";
 import { InvoiceButton, ReorderButton } from "@/components/account/OrderActions";
 import { EmptyState } from "@/components/ui/EmptyState";
@@ -47,7 +47,7 @@ export default async function OrdersPage({ searchParams }: { searchParams: Promi
                 <div className="flex flex-wrap gap-x-6 gap-y-1">
                   <p><span className="text-muted-foreground">Order </span><strong className="text-foreground">{o.number}</strong></p>
                   <p><span className="text-muted-foreground">Placed </span><span className="text-foreground">{formatDate(o.createdAt)}</span></p>
-                  <p><span className="text-muted-foreground">Total </span><strong className="text-foreground">{formatAED(o.total)}</strong></p>
+                  <p><span className="text-muted-foreground">Total </span><strong className="text-foreground">{formatSAR(o.total)}</strong></p>
                   {o.projectId && <p><span className="text-muted-foreground">Project </span><span className="text-foreground">{projects.find((p) => p.id === o.projectId)?.name}</span></p>}
                 </div>
                 <OrderStatusBadge status={o.status} />

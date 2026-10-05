@@ -13,7 +13,7 @@ import { Input, Textarea } from "@/components/ui/Input";
 import { Modal } from "@/components/ui/Modal";
 import { Select } from "@/components/ui/Select";
 import { toast } from "@/store/toast";
-import { EMIRATES, formatAddressArea } from "@/lib/data/locations";
+import { SAUDI_REGIONS, formatAddressArea } from "@/lib/data/locations";
 import { formatPhone } from "@/lib/utils/validators";
 
 export function AddressBook({ initial }: { initial: Address[] }) {
@@ -24,7 +24,7 @@ export function AddressBook({ initial }: { initial: Address[] }) {
 
   const open = (a: Address | "new") => {
     setEditing(a);
-    form.reset(a === "new" ? { label: "", name: "", phone: "", line1: "", area: "", emirate: "Dubai", craneAccess: false } : a);
+    form.reset(a === "new" ? { label: "", name: "", phone: "", line1: "", area: "", emirate: "Riyadh", craneAccess: false } : a);
   };
   const save = form.handleSubmit((v) => {
     setList((l) => {
@@ -72,7 +72,7 @@ export function AddressBook({ initial }: { initial: Address[] }) {
           <Input label="Label" placeholder="Home / Site A / Office" required error={e.label?.message} {...form.register("label")} />
           <Input label="Receiver name" required error={e.name?.message} {...form.register("name")} />
           <Input label="Mobile" inputMode="tel" placeholder="050 123 4567" required error={e.phone?.message} {...form.register("phone")} />
-          <Select label="Emirate" required options={EMIRATES.map((s) => ({ value: s, label: s }))} error={e.emirate?.message} {...form.register("emirate")} />
+          <Select label="Region" required options={SAUDI_REGIONS.map((s) => ({ value: s, label: s }))} error={e.emirate?.message} {...form.register("emirate")} />
           <Input label="Villa / building, street" placeholder="Villa 12, Street 4" required containerClassName="sm:col-span-2" error={e.line1?.message} {...form.register("line1")} />
           <Input label="Area / community" placeholder="e.g. Al Barsha" required error={e.area?.message} {...form.register("area")} />
           <Input label="Plot no. / Makani (optional)" {...form.register("line2")} />

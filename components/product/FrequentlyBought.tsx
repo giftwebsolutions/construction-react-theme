@@ -7,7 +7,7 @@ import { Plus, ShoppingCart } from "lucide-react";
 import type { ProductCardData } from "@/lib/data/card";
 import { Button } from "@/components/ui/Button";
 import { cn } from "@/lib/utils/cn";
-import { formatAED } from "@/lib/utils/format";
+import { formatSAR } from "@/lib/utils/format";
 import { formatQty, perUnit } from "@/lib/utils/units";
 import { useAddToCart } from "@/lib/hooks/use-add-to-cart";
 import { toast } from "@/store/toast";
@@ -48,18 +48,18 @@ export function FrequentlyBought({ items }: { items: ProductCardData[] }) {
                   {it.product.name}
                 </span>
                 <span className="text-xs text-muted-foreground">
-                  {formatQty(it.product.minOrderQty, it.product.unit)} × {formatAED(it.product.price)}
+                  {formatQty(it.product.minOrderQty, it.product.unit)} × {formatSAR(it.product.price)}
                   {perUnit(it.product.unit)}
                 </span>
               </span>
-              <span className="font-semibold tabular-nums text-foreground">{formatAED(it.product.price * it.product.minOrderQty)}</span>
+              <span className="font-semibold tabular-nums text-foreground">{formatSAR(it.product.price * it.product.minOrderQty)}</span>
             </label>
           </li>
         ))}
       </ul>
       <div className="mt-5 flex flex-col gap-3 border-t border-border pt-4 sm:flex-row sm:items-center sm:justify-between">
         <p className="text-sm text-muted-foreground">
-          Bundle total ({chosen.length} items): <strong className="font-display text-xl text-foreground">{formatAED(total)}</strong>
+          Bundle total ({chosen.length} items): <strong className="font-display text-xl text-foreground">{formatSAR(total)}</strong>
         </p>
         <Button
           variant="accent"

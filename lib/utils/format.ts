@@ -1,54 +1,56 @@
-/** Catalogue seed prices are authored in INR; they are converted to AED once when the catalogue is built. */
-export const INR_PER_AED = 22.7;
+/** Fixed normalization for legacy catalogue fixtures; this is not a live exchange rate. */
+const SEED_PRICE_SCALE = 22.7;
 
-/** INR → AED, rounded to a shelf-friendly step (fils under 10, quarter-dirham under 1,000, whole dirhams above). */
-export function fromINR(inr: number) {
-  const aed = inr / INR_PER_AED;
-  if (aed < 10) return Math.max(0.05, Math.round(aed * 20) / 20);
-  if (aed < 1000) return Math.round(aed * 4) / 4;
-  return Math.round(aed);
+/** Preserve the template's existing sample prices and shelf rounding. */
+export function fromSeedPrice(seedPrice: number) {
+  const amount = seedPrice / SEED_PRICE_SCALE;
+  if (amount < 10) return Math.max(0.05, Math.round(amount * 20) / 20);
+  if (amount < 1000) return Math.round(amount * 4) / 4;
+  return Math.round(amount);
 }
 
-const aedFormatter = new Intl.NumberFormat("en-AE", {
+const sarFormatter = new Intl.NumberFormat("en-SA", {
   style: "currency",
-  currency: "AED",
+  currency: "SAR",
+  currencyDisplay: "code",
   maximumFractionDigits: 0,
 });
 
-const aedFormatterFils = new Intl.NumberFormat("en-AE", {
+const sarFormatterHalalas = new Intl.NumberFormat("en-SA", {
   style: "currency",
-  currency: "AED",
+  currency: "SAR",
+  currencyDisplay: "code",
   minimumFractionDigits: 2,
   maximumFractionDigits: 2,
 });
 
-const numberFormatter = new Intl.NumberFormat("en-AE");
+const numberFormatter = new Intl.NumberFormat("en-SA");
 
-/** AED 1,234.50 — shows fils only when present or requested. */
-export function formatAED(amount: number, opts: { fils?: boolean } = {}) {
-  const hasFils = Math.round(amount * 100) % 100 !== 0;
-  return (opts.fils || hasFils ? aedFormatterFils : aedFormatter).format(amount);
+/** SAR 1,234.50 — shows halalas only when present or requested. */
+export function formatSAR(amount: number, opts: { halalas?: boolean } = {}) {
+  const hasHalalas = Math.round(amount * 100) % 100 !== 0;
+  return (opts.halalas || hasHalalas ? sarFormatterHalalas : sarFormatter).format(amount);
 }
 
 /** 1,234 */
 export function formatNumber(n: number, maxFractionDigits = 2) {
   if (maxFractionDigits === 2) return numberFormatter.format(n);
-  return new Intl.NumberFormat("en-AE", { maximumFractionDigits: maxFractionDigits }).format(n);
+  return new Intl.NumberFormat("en-SA", { maximumFractionDigits: maxFractionDigits }).format(n);
 }
 
-/** Compact notation: AED 1.2M, AED 340K */
-export function formatCompactAED(amount: number) {
-  if (amount >= 1_000_000) return `AED ${(amount / 1_000_000).toFixed(amount % 1_000_000 === 0 ? 0 : 2)}M`;
-  if (amount >= 100_000) return `AED ${(amount / 1_000).toFixed(0)}K`;
-  return formatAED(amount);
+/** Compact notation: SAR 1.2M, SAR 340K */
+export function formatCompactSAR(amount: number) {
+  if (amount >= 1_000_000) return `SAR ${(amount / 1_000_000).toFixed(amount % 1_000_000 === 0 ? 0 : 2)}M`;
+  if (amount >= 100_000) return `SAR ${(amount / 1_000).toFixed(0)}K`;
+  return formatSAR(amount);
 }
 
 export function formatDate(iso: string, opts: Intl.DateTimeFormatOptions = { day: "numeric", month: "short", year: "numeric" }) {
-  return new Intl.DateTimeFormat("en-AE", opts).format(new Date(iso));
+  return new Intl.DateTimeFormat("en-SA", opts).format(new Date(iso));
 }
 
 export function formatDateTime(iso: string) {
-  return new Intl.DateTimeFormat("en-AE", {
+  return new Intl.DateTimeFormat("en-SA", {
     day: "numeric",
     month: "short",
     year: "numeric",

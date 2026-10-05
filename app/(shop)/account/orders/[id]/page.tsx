@@ -5,7 +5,7 @@ import { notFound } from "next/navigation";
 import { Check, CircleX, CreditCard, FileText, MapPin, Phone } from "lucide-react";
 import { getSessionUser } from "@/lib/auth/session";
 import { getOrderById } from "@/lib/data";
-import { formatDate, formatDateTime, formatAED } from "@/lib/utils/format";
+import { formatDate, formatDateTime, formatSAR } from "@/lib/utils/format";
 import { formatQty, perUnit } from "@/lib/utils/units";
 import { OrderStatusBadge } from "@/components/account/StatusBadge";
 import { InvoiceButton, ReorderButton } from "@/components/account/OrderActions";
@@ -69,9 +69,9 @@ export default async function OrderDetail({ params }: { params: Promise<{ id: st
                 <Link href={`/product/${l.slug}`} className="relative size-16 shrink-0 overflow-hidden rounded-lg bg-surface-muted"><Image src={l.image} alt="" fill sizes="64px" className="object-cover" /></Link>
                 <div className="min-w-0 flex-1">
                   <Link href={`/product/${l.slug}`} className="line-clamp-2 text-sm font-semibold text-foreground hover:text-primary-700">{l.name}</Link>
-                  <p className="mt-1 text-xs text-muted-foreground">{formatQty(l.quantity, l.unit)} × {formatAED(l.unitPrice)}{perUnit(l.unit)} · VAT {l.vatRate}%</p>
+                  <p className="mt-1 text-xs text-muted-foreground">{formatQty(l.quantity, l.unit)} × {formatSAR(l.unitPrice)}{perUnit(l.unit)} · VAT {l.vatRate}%</p>
                 </div>
-                <p className="text-sm font-bold tabular-nums text-foreground">{formatAED(l.unitPrice * l.quantity)}</p>
+                <p className="text-sm font-bold tabular-nums text-foreground">{formatSAR(l.unitPrice * l.quantity)}</p>
               </li>
             ))}
           </ul>
@@ -86,11 +86,11 @@ export default async function OrderDetail({ params }: { params: Promise<{ id: st
           <section className="rounded-xl border border-border bg-surface p-4 text-sm shadow-card">
             <h2 className="flex items-center gap-2 font-bold text-foreground"><CreditCard className="size-4" aria-hidden /> Payment</h2>
             <dl className="mt-3 space-y-1.5">
-              <div className="flex justify-between"><dt className="text-muted-foreground">Taxable value</dt><dd className="tabular-nums">{formatAED(order.subtotal)}</dd></div>
-              <div className="flex justify-between"><dt className="text-muted-foreground">VAT</dt><dd className="tabular-nums">{formatAED(order.vatTotal)}</dd></div>
-              <div className="flex justify-between"><dt className="text-muted-foreground">Delivery</dt><dd className="tabular-nums">{order.deliveryCharge ? formatAED(order.deliveryCharge) : "FREE"}</dd></div>
-              <div className="flex justify-between text-success"><dt>You saved</dt><dd className="tabular-nums">{formatAED(order.discount)}</dd></div>
-              <div className="flex justify-between border-t border-border pt-2 text-base font-bold"><dt>Total</dt><dd className="tabular-nums">{formatAED(order.total)}</dd></div>
+              <div className="flex justify-between"><dt className="text-muted-foreground">Taxable value</dt><dd className="tabular-nums">{formatSAR(order.subtotal)}</dd></div>
+              <div className="flex justify-between"><dt className="text-muted-foreground">VAT</dt><dd className="tabular-nums">{formatSAR(order.vatTotal)}</dd></div>
+              <div className="flex justify-between"><dt className="text-muted-foreground">Delivery</dt><dd className="tabular-nums">{order.deliveryCharge ? formatSAR(order.deliveryCharge) : "FREE"}</dd></div>
+              <div className="flex justify-between text-success"><dt>You saved</dt><dd className="tabular-nums">{formatSAR(order.discount)}</dd></div>
+              <div className="flex justify-between border-t border-border pt-2 text-base font-bold"><dt>Total</dt><dd className="tabular-nums">{formatSAR(order.total)}</dd></div>
             </dl>
             <p className="mt-3 text-xs text-muted-foreground">Paid via {PAY[order.paymentMethod]}</p>
             {order.trn && <p className="mt-1 flex items-center gap-1.5 text-xs text-muted-foreground"><FileText className="size-3.5" aria-hidden /> VAT invoice · {order.trn}</p>}

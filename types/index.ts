@@ -41,7 +41,7 @@ export type MaterialType =
   | "safety";
 
 export type VatRate = 0 | 5;
-export type Emirate = "Kingdom of Saudi Arabia" | "Dubai" | "Abu Dhabi" | "Sharjah" | "Ajman" | "Umm Al Quwain" | "Ras Al Khaimah" | "Fujairah";
+export type SaudiRegion = "Riyadh" | "Makkah" | "Madinah" | "Eastern Province" | "Asir" | "Tabuk" | "Qassim" | "Hail" | "Northern Borders" | "Jazan" | "Najran" | "Al Bahah" | "Al Jawf";
 export type DeliveryType = "parcel" | "truck" | "both";
 export type AttributeValue = string | number | string[];
 
@@ -345,7 +345,7 @@ export interface Address {
   landmark?: string;
   /** Community / district, e.g. "Al Barsha" */
   area: string;
-  emirate: Emirate;
+  emirate: SaudiRegion;
   /** Optional P.O. Box — UAE has no postal codes */
   poBox?: string;
   unloadingNotes?: string;
@@ -451,7 +451,7 @@ export interface DeliveryEstimate {
   areaId: string;
   serviceable: boolean;
   area?: string;
-  emirate?: Emirate;
+  emirate?: SaudiRegion;
   etaDays?: number;
   etaDate?: string;
   charge?: number;

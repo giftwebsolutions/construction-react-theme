@@ -11,10 +11,10 @@ import { addressSchema, type AddressFormValues, type AddressInput } from "@/lib/
 import { useCart } from "@/store/cart";
 import { toast } from "@/store/toast";
 import { computeCartTotals, lineTotal } from "@/lib/utils/cart";
-import { formatDate, formatAED } from "@/lib/utils/format";
+import { formatDate, formatSAR } from "@/lib/utils/format";
 import { formatQty } from "@/lib/utils/units";
 import { formatPhone, isValidTRN } from "@/lib/utils/validators";
-import { EMIRATES, formatAddressArea } from "@/lib/data/locations";
+import { SAUDI_REGIONS, formatAddressArea } from "@/lib/data/locations";
 import { useHydrated } from "@/lib/hooks/use-hydrated";
 import { Button, ButtonLink } from "@/components/ui/Button";
 import { Checkbox, RadioCard } from "@/components/ui/Checkbox";
@@ -97,7 +97,7 @@ export function CheckoutFlow({ user, savedAddresses }: { user: User; savedAddres
   const totals = computeCartTotals(items, { couponCode });
   const hasTruck = totals.groups.some((g) => g.type === "truck");
 
-  const form = useForm<AddressFormValues, unknown, AddressInput>({ resolver: zodResolver(addressSchema), defaultValues: { label: "Site", name: user.name, phone: user.phone, emirate: "Dubai", craneAccess: false } });
+  const form = useForm<AddressFormValues, unknown, AddressInput>({ resolver: zodResolver(addressSchema), defaultValues: { label: "Site", name: user.name, phone: user.phone, emirate: "Riyadh", craneAccess: false } });
 
   if (!hydrated) return <Skeleton className="h-96 rounded-xl" />;
   if (!items.length)
@@ -153,13 +153,13 @@ export function CheckoutFlow({ user, savedAddresses }: { user: User; savedAddres
   const PAYMENTS: { value: PaymentMethod; label: string; desc: string; icon: React.ReactNode; disabled?: boolean }[] = [
     { value: "card", label: "Credit / Debit Card", desc: "Visa, Mastercard, American Express", icon: <CreditCard /> },
     { value: "wallet", label: "Apple Pay / Google Pay", desc: "Pay in one tap on your phone", icon: <Smartphone /> },
-    { value: "bnpl", label: "Tabby — pay in 4", desc: totals.grandTotal > 5000 ? "Available for orders up to AED 5,000" : `4 interest-free payments of ${formatAED(totals.grandTotal / 4)}`, icon: <CalendarClock />, disabled: totals.grandTotal > 5000 },
+    { value: "bnpl", label: "Tabby — pay in 4", desc: totals.grandTotal > 5000 ? "Available for orders up to SAR 5,000" : `4 interest-free payments of ${formatSAR(totals.grandTotal / 4)}`, icon: <CalendarClock />, disabled: totals.grandTotal > 5000 },
     { value: "bank-transfer", label: "Bank Transfer", desc: "Emirates NBD, ADCB, FAB, Mashreq and all UAE banks", icon: <Landmark /> },
-    { value: "cod", label: "Cash on Delivery", desc: totals.grandTotal > 2500 ? "Available for orders up to AED 2,500" : "Pay when material arrives", icon: <Banknote />, disabled: totals.grandTotal > 2500 },
+    { value: "cod", label: "Cash on Delivery", desc: totals.grandTotal > 2500 ? "Available for orders up to SAR 2,500" : "Pay when material arrives", icon: <Banknote />, disabled: totals.grandTotal > 2500 },
     {
       value: "credit",
       label: "Smart-MEP Credit (Pay Later)",
-      desc: user.isVerifiedContractor ? `30-day credit · limit ${formatAED(user.creditLimit ?? 0)}` : "For verified contractors only",
+      desc: user.isVerifiedContractor ? `30-day credit · limit ${formatSAR(user.creditLimit ?? 0)}` : "For verified contractors only",
       icon: <HandCoins />,
       disabled: !user.isVerifiedContractor,
     },
@@ -199,7 +199,7 @@ export function CheckoutFlow({ user, savedAddresses }: { user: User; savedAddres
               <Input label="Label" placeholder="Site A / Home / Office" required error={form.formState.errors.label?.message} {...form.register("label")} />
               <Input label="Receiver name" required error={form.formState.errors.name?.message} {...form.register("name")} />
               <Input label="Mobile" inputMode="tel" placeholder="050 123 4567" required error={form.formState.errors.phone?.message} {...form.register("phone")} />
-              <Select label="Emirate" required options={EMIRATES.map((s) => ({ value: s, label: s }))} error={form.formState.errors.emirate?.message} {...form.register("emirate")} />
+              <Select label="Region" required options={SAUDI_REGIONS.map((s) => ({ value: s, label: s }))} error={form.formState.errors.emirate?.message} {...form.register("emirate")} />
               <Input label="Villa / building, street" placeholder="Villa 12, Street 4" required containerClassName="sm:col-span-2" error={form.formState.errors.line1?.message} {...form.register("line1")} />
               <Input label="Area / community" placeholder="e.g. Al Barsha" required error={form.formState.errors.area?.message} {...form.register("area")} />
               <Input label="Plot no. / Makani (optional)" {...form.register("line2")} />
@@ -234,9 +234,9 @@ export function CheckoutFlow({ user, savedAddresses }: { user: User; savedAddres
               const active = d === date;
               return (
                 <button key={d} type="button" role="radio" aria-checked={active} onClick={() => setDate(d)} className={cn("flex w-16 shrink-0 flex-col items-center rounded-xl border py-2.5", active ? "border-primary-800 bg-primary-800 text-white" : "border-border bg-surface text-foreground hover:border-primary-600")}>
-                  <span className="text-[11px] uppercase opacity-80">{dt.toLocaleDateString("en-AE", { weekday: "short" })}</span>
+                  <span className="text-[11px] uppercase opacity-80">{dt.toLocaleDateString("en-SA", { weekday: "short" })}</span>
                   <span className="font-display text-lg font-bold">{dt.getDate()}</span>
-                  <span className="text-[11px] opacity-80">{dt.toLocaleDateString("en-AE", { month: "short" })}</span>
+                  <span className="text-[11px] opacity-80">{dt.toLocaleDateString("en-SA", { month: "short" })}</span>
                 </button>
               );
             })}
@@ -291,7 +291,7 @@ export function CheckoutFlow({ user, savedAddresses }: { user: User; savedAddres
                   <span className="line-clamp-1 text-sm font-medium text-foreground">{i.name}</span>
                   <span className="text-xs text-muted-foreground">{formatQty(i.quantity, i.unit)}</span>
                 </span>
-                <span className="text-sm font-semibold tabular-nums text-foreground">{formatAED(lineTotal(i))}</span>
+                <span className="text-sm font-semibold tabular-nums text-foreground">{formatSAR(lineTotal(i))}</span>
               </li>
             ))}
           </ul>
@@ -302,7 +302,7 @@ export function CheckoutFlow({ user, savedAddresses }: { user: User; savedAddres
             <div><dt className="text-xs text-muted-foreground">Payment</dt><dd className="font-medium text-foreground">{PAYMENTS.find((p) => p.value === payment)?.label}</dd></div>
           </dl>
           <Button variant="accent" size="lg" fullWidth className="mt-5" loading={placing} loadingText="Placing order…" onClick={place}>
-            Place order · {formatAED(totals.grandTotal)}
+            Place order · {formatSAR(totals.grandTotal)}
           </Button>
           <p className="mt-2 text-center text-xs text-muted-foreground">By placing this order you agree to our Terms and Return Policy.</p>
         </StepShell>

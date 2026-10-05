@@ -76,7 +76,7 @@ export function computeCartTotals(items: CartItem[], opts: { couponCode?: string
     coupon = findCoupon(opts.couponCode);
     if (!coupon) couponError = "This coupon code isn't valid.";
     else if (subtotal < coupon.minSubtotal) {
-      couponError = `Add items worth AED ${(coupon.minSubtotal - subtotal).toLocaleString("en-AE", { maximumFractionDigits: 0 })} more to use ${coupon.code}.`;
+      couponError = `Add items worth SAR ${(coupon.minSubtotal - subtotal).toLocaleString("en-SA", { maximumFractionDigits: 0 })} more to use ${coupon.code}.`;
       coupon = undefined;
     } else if (coupon.code === "SITE50" && !groups.some((g) => g.type === "truck")) {
       couponError = "SITE50 applies to orders with truck delivery.";

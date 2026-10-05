@@ -1,45 +1,40 @@
-import type { DeliveryEstimate, DeliveryType, Emirate } from "@/types";
+import type { DeliveryEstimate, DeliveryType, SaudiRegion } from "@/types";
 
-export const EMIRATES = ["Kingdom of Saudi Arabia", "Dubai", "Abu Dhabi", "Sharjah", "Ajman", "Umm Al Quwain", "Ras Al Khaimah", "Fujairah"] as const satisfies readonly Emirate[];
+export const SAUDI_REGIONS = ["Riyadh","Makkah","Madinah","Eastern Province","Asir","Tabuk","Qassim","Hail","Northern Borders","Jazan","Najran","Al Bahah","Al Jawf"] as const satisfies readonly SaudiRegion[];
 
 export interface ServiceArea {
   id: string;
   area: string;
-  emirate: Emirate;
-  /** 0 = same-day zone around the Al Quoz warehouse, 2 = furthest */
+  /** Legacy address field name; contains a Saudi region. */
+  emirate: SaudiRegion;
+  /** Demo delivery zones; replace with backend coverage and estimates. */
   zone: 0 | 1 | 2;
 }
 
-/** Serviceable areas. Warehouse: Al Quoz Industrial Area 3, Dubai. */
+/** Saudi delivery locations for the sample template. */
 export const SERVICE_AREAS: ServiceArea[] = [
-  { id: "riyadh", area: "Riyadh", emirate: "Kingdom of Saudi Arabia", zone: 2 },
-  { id: "al-quoz", area: "Al Quoz", emirate: "Dubai", zone: 0 },
-  { id: "business-bay", area: "Business Bay", emirate: "Dubai", zone: 0 },
-  { id: "jumeirah", area: "Jumeirah", emirate: "Dubai", zone: 0 },
-  { id: "al-barsha", area: "Al Barsha", emirate: "Dubai", zone: 0 },
-  { id: "dubai-marina", area: "Dubai Marina", emirate: "Dubai", zone: 0 },
-  { id: "jvc", area: "Jumeirah Village Circle", emirate: "Dubai", zone: 0 },
-  { id: "deira", area: "Deira", emirate: "Dubai", zone: 1 },
-  { id: "al-qusais", area: "Al Qusais", emirate: "Dubai", zone: 1 },
-  { id: "dubai-south", area: "Dubai South", emirate: "Dubai", zone: 1 },
-  { id: "jebel-ali", area: "Jebel Ali", emirate: "Dubai", zone: 1 },
-  { id: "sharjah-industrial", area: "Industrial Area", emirate: "Sharjah", zone: 1 },
-  { id: "al-nahda-shj", area: "Al Nahda", emirate: "Sharjah", zone: 1 },
-  { id: "muwaileh", area: "Muwaileh", emirate: "Sharjah", zone: 1 },
-  { id: "ajman-al-jurf", area: "Al Jurf", emirate: "Ajman", zone: 1 },
-  { id: "ajman-al-rashidiya", area: "Al Rashidiya", emirate: "Ajman", zone: 1 },
-  { id: "musaffah", area: "Musaffah", emirate: "Abu Dhabi", zone: 2 },
-  { id: "khalifa-city", area: "Khalifa City", emirate: "Abu Dhabi", zone: 2 },
-  { id: "al-reem", area: "Al Reem Island", emirate: "Abu Dhabi", zone: 2 },
-  { id: "al-ain", area: "Al Ain", emirate: "Abu Dhabi", zone: 2 },
-  { id: "uaq-city", area: "Umm Al Quwain City", emirate: "Umm Al Quwain", zone: 2 },
-  { id: "rak-al-nakheel", area: "Al Nakheel", emirate: "Ras Al Khaimah", zone: 2 },
-  { id: "rak-al-hamra", area: "Al Hamra", emirate: "Ras Al Khaimah", zone: 2 },
-  { id: "fujairah-city", area: "Fujairah City", emirate: "Fujairah", zone: 2 },
-  { id: "dibba", area: "Dibba", emirate: "Fujairah", zone: 2 },
+  { id: "riyadh", area: "Riyadh", emirate: "Riyadh", zone: 0 },
+  { id: "al-kharj", area: "Al Kharj", emirate: "Riyadh", zone: 1 },
+  { id: "jeddah", area: "Jeddah", emirate: "Makkah", zone: 1 },
+  { id: "makkah", area: "Makkah", emirate: "Makkah", zone: 1 },
+  { id: "taif", area: "Taif", emirate: "Makkah", zone: 2 },
+  { id: "madinah", area: "Madinah", emirate: "Madinah", zone: 2 },
+  { id: "yanbu", area: "Yanbu", emirate: "Madinah", zone: 2 },
+  { id: "dammam", area: "Dammam", emirate: "Eastern Province", zone: 1 },
+  { id: "khobar", area: "Khobar", emirate: "Eastern Province", zone: 1 },
+  { id: "jubail", area: "Jubail", emirate: "Eastern Province", zone: 1 },
+  { id: "abha", area: "Abha", emirate: "Asir", zone: 2 },
+  { id: "tabuk", area: "Tabuk", emirate: "Tabuk", zone: 2 },
+  { id: "buraydah", area: "Buraydah", emirate: "Qassim", zone: 2 },
+  { id: "hail", area: "Hail", emirate: "Hail", zone: 2 },
+  { id: "arar", area: "Arar", emirate: "Northern Borders", zone: 2 },
+  { id: "jazan", area: "Jazan", emirate: "Jazan", zone: 2 },
+  { id: "najran", area: "Najran", emirate: "Najran", zone: 2 },
+  { id: "al-bahah", area: "Al Bahah", emirate: "Al Bahah", zone: 2 },
+  { id: "sakaka", area: "Sakaka", emirate: "Al Jawf", zone: 2 },
 ];
 
-export const DEFAULT_AREA_ID = "al-quoz";
+export const DEFAULT_AREA_ID = "riyadh";
 
 export function lookupArea(id: string) {
   return SERVICE_AREAS.find((a) => a.id === id);
@@ -49,7 +44,7 @@ export const areaLabel = (a: Pick<ServiceArea, "area" | "emirate">) => `${a.area
 
 export function estimateDelivery(areaId: string, deliveryType: DeliveryType, leadTimeDays: number): DeliveryEstimate {
   const loc = lookupArea(areaId);
-  if (!loc) return { areaId, serviceable: false, message: "Select a delivery area in the UAE." };
+  if (!loc) return { areaId, serviceable: false, message: "Select a delivery city in Saudi Arabia." };
   const truck = deliveryType !== "parcel";
   const etaDays = leadTimeDays + loc.zone;
   const charge = truck ? [25, 45, 80][loc.zone]! : [0, 10, 15][loc.zone]!;
@@ -71,9 +66,9 @@ function addDays(days: number) {
 }
 
 function formatShort(iso: string) {
-  return new Intl.DateTimeFormat("en-AE", { weekday: "short", day: "numeric", month: "short" }).format(new Date(iso));
+  return new Intl.DateTimeFormat("en-SA", { weekday: "short", day: "numeric", month: "short" }).format(new Date(iso));
 }
 
-/** "Al Barsha, Dubai · P.O. Box 12345" */
+/** "Riyadh, Riyadh · P.O. Box 12345" */
 export const formatAddressArea = (a: { area: string; emirate: string; poBox?: string }) =>
   `${a.area}, ${a.emirate}${a.poBox ? ` · P.O. Box ${a.poBox}` : ""}`;

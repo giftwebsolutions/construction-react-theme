@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { EMIRATES } from "@/lib/data/locations";
+import { SAUDI_REGIONS } from "@/lib/data/locations";
 import { isValidTRN, normalisePhone, PHONE_REGEX } from "@/lib/utils/validators";
 
 /* --------------------------------- Shared --------------------------------- */
@@ -10,7 +10,7 @@ export const phoneSchema = z
   .transform(normalisePhone)
   .refine((v) => PHONE_REGEX.test(v), { error: "Enter a valid UAE mobile number, e.g. 050 123 4567" });
 
-export const emirateSchema = z.enum(EMIRATES, { error: "Select an emirate" });
+export const emirateSchema = z.enum(SAUDI_REGIONS, { error: "Select a Saudi region" });
 
 export const trnSchema = z
   .string()

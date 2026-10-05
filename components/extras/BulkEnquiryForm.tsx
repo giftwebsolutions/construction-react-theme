@@ -7,7 +7,7 @@ import { CheckCircle2, FileSpreadsheet, Plus, Trash2, Upload, X } from "lucide-r
 import { bulkEnquirySchema, type BulkEnquiryFormValues, type BulkEnquiryInput } from "@/lib/validations";
 import { Button, ButtonLink } from "@/components/ui/Button";
 import { Input, Textarea } from "@/components/ui/Input";
-import { EMIRATES } from "@/lib/data/locations";
+import { SAUDI_REGIONS } from "@/lib/data/locations";
 import { Select } from "@/components/ui/Select";
 
 const UNITS = ["bag", "tonne", "kg", "piece", "sqft", "cft", "box", "litre", "load"];
@@ -20,7 +20,7 @@ export function BulkEnquiryForm({ initialItem, user }: { initialItem?: string; u
     resolver: zodResolver(bulkEnquirySchema),
     defaultValues: {
       name: user?.name ?? "", email: user?.email ?? "", phone: user?.phone ?? "", company: user?.company ?? "", trn: user?.trn ?? "",
-      projectName: "", projectType: "Residential", area: "", emirate: "Dubai",
+      projectName: "", projectType: "Residential", area: "", emirate: "Riyadh",
       items: [{ product: initialItem ?? "", quantity: 1, unit: "bag" }],
     },
   });
@@ -75,8 +75,8 @@ export function BulkEnquiryForm({ initialItem, user }: { initialItem?: string; u
         <div className="mt-4 grid gap-4 sm:grid-cols-2">
           <Input label="Project name" placeholder="e.g. G+1 villa, Al Barsha South" required error={e.projectName?.message} {...register("projectName")} />
           <Select label="Project type" options={["Residential", "Commercial", "Renovation", "Infrastructure"].map((v) => ({ value: v, label: v }))} {...register("projectType")} />
-          <Input label="Site area / community" placeholder="e.g. Dubai South" required error={e.area?.message} {...register("area")} />
-          <Select label="Emirate" options={EMIRATES.map((v) => ({ value: v, label: v }))} error={e.emirate?.message} {...register("emirate")} />
+          <Input label="Site area / community" placeholder="e.g. Riyadh" required error={e.area?.message} {...register("area")} />
+          <Select label="Region" options={SAUDI_REGIONS.map((v) => ({ value: v, label: v }))} error={e.emirate?.message} {...register("emirate")} />
           <Input label="Material required by" type="date" {...register("requiredBy")} />
         </div>
       </section>

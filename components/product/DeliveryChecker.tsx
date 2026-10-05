@@ -5,8 +5,8 @@ import { CheckCircle2, Loader2, MapPin, Truck, XCircle } from "lucide-react";
 import type { DeliveryEstimate } from "@/types";
 import { useDeliveryLocation } from "@/store/ui";
 import { useHydrated } from "@/lib/hooks/use-hydrated";
-import { formatAED } from "@/lib/utils/format";
-import { EMIRATES, SERVICE_AREAS, areaLabel, lookupArea } from "@/lib/data/locations";
+import { formatSAR } from "@/lib/utils/format";
+import { DEFAULT_AREA_ID, SAUDI_REGIONS, SERVICE_AREAS, areaLabel, lookupArea } from "@/lib/data/locations";
 
 export function DeliveryChecker({ productId }: { productId: string }) {
   const hydrated = useHydrated();
@@ -42,7 +42,7 @@ export function DeliveryChecker({ productId }: { productId: string }) {
       <div className="mt-3 flex items-center gap-2">
         <select
           id="pdp-area"
-          value={hydrated ? areaId : "al-quoz"}
+          value={hydrated ? areaId : DEFAULT_AREA_ID}
           onChange={(e) => {
             const a = lookupArea(e.target.value);
             if (!a) return;
@@ -51,7 +51,7 @@ export function DeliveryChecker({ productId }: { productId: string }) {
           }}
           className="h-11 min-w-0 flex-1 rounded-lg border border-border bg-surface px-3 text-base focus:border-primary-600 focus:outline-none focus:ring-3 focus:ring-primary-600/15 sm:text-sm"
         >
-          {EMIRATES.map((em) => (
+          {SAUDI_REGIONS.map((em) => (
             <optgroup key={em} label={em}>
               {SERVICE_AREAS.filter((a) => a.emirate === em).map((a) => (
                 <option key={a.id} value={a.id}>
@@ -72,7 +72,7 @@ export function DeliveryChecker({ productId }: { productId: string }) {
               </p>
               <p className="flex items-center gap-2 text-muted-foreground">
                 <Truck className="size-4 shrink-0" aria-hidden />
-                {result.deliveryType === "truck" ? "Truck delivery" : "Parcel delivery"} · {result.charge ? `${formatAED(result.charge)} delivery` : "Free delivery"}
+                {result.deliveryType === "truck" ? "Truck delivery" : "Parcel delivery"} · {result.charge ? `${formatSAR(result.charge)} delivery` : "Free delivery"}
                 {result.emirate ? ` · ${result.emirate}` : ""}
               </p>
             </div>

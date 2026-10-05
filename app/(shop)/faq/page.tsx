@@ -13,12 +13,12 @@ const GROUPS = [
   ] },
   { id: "delivery", title: "Delivery", items: [
     ["Do you deliver to construction sites?", "Yes. Heavy materials (cement, steel, sand, bricks) go by truck to your site with ground-level unloading. Lighter items ship as parcels."],
-    ["How are delivery charges calculated?", "Parcel delivery is free above AED 100. Truck delivery is free above AED 2,500 and otherwise AED 35–110 by weight. Exact charges show at checkout."],
+    ["How are delivery charges calculated?", "Parcel delivery is free above SAR 100. Truck delivery is free above SAR 2,500 and otherwise SAR 35–110 by weight. Exact charges show at checkout."],
     ["Can I choose a delivery slot?", "Yes. Pick a date and time slot at checkout. Our dispatcher calls one hour before arrival."],
   ] },
   { id: "vat", title: "VAT invoice & payments", items: [
     ["How do I get a VAT invoice with my TRN?", "Tick “Use TRN for business invoice” at checkout, or save your TRN in your profile. You can claim input tax credit on eligible purchases."],
-    ["Which payment methods are available?", "Visa and Mastercard, Apple Pay, Google Pay, Tabby instalments, bank transfer and cash on delivery (up to AED 2,500). Verified contractors can use Smart-MEP Credit with 30-day terms."],
+    ["Which payment methods are available?", "Visa and Mastercard, Apple Pay, Google Pay, Tabby instalments, bank transfer and cash on delivery (up to SAR 2,500). Verified contractors can use Smart-MEP Credit with 30-day terms."],
   ] },
   { id: "returns", title: "Returns & quality", items: [
     ["What if material arrives damaged?", "Report within 48 hours with photos from your account or WhatsApp. We replace or refund damaged units."],

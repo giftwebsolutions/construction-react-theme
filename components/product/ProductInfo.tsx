@@ -89,7 +89,7 @@ export function ProductInfo({ product: p, reviews, breakdown, questions }: Props
               <li>{p.deliveryType === "parcel" ? "Ships by courier to your door." : "Delivered by truck/tractor to your site — ensure vehicle access."}</li>
               <li>Dispatch within {p.leadTimeDays} working day{p.leadTimeDays > 1 ? "s" : ""}; choose a delivery slot at checkout.</li>
               <li>Unloading to ground level included for truck orders. Floor delivery on request.</li>
-              <li>Free truck delivery on orders above AED 2,500; parcel free above AED 100.</li>
+              <li>Free truck delivery on orders above SAR 2,500; parcel free above SAR 100.</li>
             </ul>
           </div>
           <div className="rounded-xl border border-border p-4">

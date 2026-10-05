@@ -10,7 +10,7 @@ import { QuantityStepper } from "@/components/ui/QuantityStepper";
 import { useCart } from "@/store/cart";
 import { useUI } from "@/store/ui";
 import { computeCartTotals, lineTotal, unitPriceFor } from "@/lib/utils/cart";
-import { formatAED } from "@/lib/utils/format";
+import { formatSAR } from "@/lib/utils/format";
 import { perUnit } from "@/lib/utils/units";
 import { useHydrated } from "@/lib/hooks/use-hydrated";
 
@@ -31,10 +31,10 @@ export function MiniCart() {
       footer={
         items.length > 0 && (
           <div className="space-y-3">
-            {totals.mrpSavings > 0 && <p className="rounded-lg bg-success-50 px-3 py-2 text-xs font-semibold text-green-800">You save {formatAED(totals.mrpSavings)} on this order</p>}
+            {totals.mrpSavings > 0 && <p className="rounded-lg bg-success-50 px-3 py-2 text-xs font-semibold text-green-800">You save {formatSAR(totals.mrpSavings)} on this order</p>}
             <div className="flex items-baseline justify-between">
               <span className="text-sm text-muted-foreground">Subtotal (incl. VAT)</span>
-              <span className="font-display text-xl font-bold text-foreground">{formatAED(totals.subtotal)}</span>
+              <span className="font-display text-xl font-bold text-foreground">{formatSAR(totals.subtotal)}</span>
             </div>
             <p className="text-xs text-muted-foreground">Delivery charges calculated at checkout.</p>
             <div className="grid grid-cols-2 gap-2">
@@ -80,12 +80,12 @@ export function MiniCart() {
                       </Link>
                       {i.variant && <p className="mt-0.5 text-xs text-muted-foreground">{Object.entries(i.variant).map(([k, v]) => `${k}: ${v}`).join(" · ")}</p>}
                       <p className="mt-1 text-xs text-muted-foreground">
-                        {formatAED(unitPriceFor(i))}
+                        {formatSAR(unitPriceFor(i))}
                         {perUnit(i.unit)}
                       </p>
                       <div className="mt-2 flex items-center justify-between gap-2">
                         <QuantityStepper value={i.quantity} onChange={(q) => setQty(i.key, q)} min={i.minOrderQty} step={i.stepQty} size="sm" label={`Quantity for ${i.name}`} />
-                        <span className="text-sm font-bold text-foreground">{formatAED(lineTotal(i))}</span>
+                        <span className="text-sm font-bold text-foreground">{formatSAR(lineTotal(i))}</span>
                       </div>
                     </div>
                     <button type="button" onClick={() => remove(i.key)} className="-mr-2 -mt-2 self-start rounded-lg p-2 text-muted-foreground hover:bg-danger-50 hover:text-danger" aria-label={`Remove ${i.name}`}>

@@ -135,7 +135,7 @@ export function AdContractor() {
             <p className="text-xs font-bold uppercase tracking-widest text-accent-400">For contractors & builders</p>
             <p className="mt-2 font-display text-2xl font-extrabold sm:text-3xl">30-day credit. Project pricing. One account.</p>
             <ul className="mt-4 grid gap-2 text-sm text-primary-100 sm:grid-cols-3">
-              {["Pay Later up to AED 50,000", "Split delivery across sites", "Dedicated account manager"].map((b) => (
+              {["Pay Later up to SAR 50,000", "Split delivery across sites", "Dedicated account manager"].map((b) => (
                 <li key={b} className="flex items-center gap-2">
                   <BadgeCheck className="size-4 shrink-0 text-accent-400" aria-hidden /> {b}
                 </li>

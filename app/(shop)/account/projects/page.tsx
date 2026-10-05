@@ -3,7 +3,7 @@ import Link from "next/link";
 import { ClipboardList, MapPin, Plus } from "lucide-react";
 import { getSessionUser } from "@/lib/auth/session";
 import { getOrders, getProjects } from "@/lib/data";
-import { formatCompactAED, formatDate, formatAED } from "@/lib/utils/format";
+import { formatCompactSAR, formatDate, formatSAR } from "@/lib/utils/format";
 import { Badge } from "@/components/ui/Badge";
 import { ButtonLink } from "@/components/ui/Button";
 import { EmptyState } from "@/components/ui/EmptyState";
@@ -40,7 +40,7 @@ export default async function ProjectsPage() {
                   <Badge tone={p.status === "active" ? "success" : p.status === "planning" ? "warning" : "neutral"} size="md" className="capitalize">{p.status}</Badge>
                 </div>
                 <div className="mt-4">
-                  <div className="flex justify-between text-xs"><span className="text-muted-foreground">Material spend</span><span className="font-semibold text-foreground">{formatAED(spent)} of {formatCompactAED(p.budget)}</span></div>
+                  <div className="flex justify-between text-xs"><span className="text-muted-foreground">Material spend</span><span className="font-semibold text-foreground">{formatSAR(spent)} of {formatCompactSAR(p.budget)}</span></div>
                   <div className="mt-1.5 h-2 overflow-hidden rounded-full bg-surface-muted" role="progressbar" aria-valuenow={Math.round(pct)} aria-valuemin={0} aria-valuemax={100} aria-label="Budget used">
                     <div className="h-full rounded-full bg-accent-500" style={{ width: `${pct}%` }} />
                   </div>
@@ -50,7 +50,7 @@ export default async function ProjectsPage() {
                   {po.slice(0, 3).map((o) => (
                     <li key={o.id} className="flex justify-between gap-2">
                       <Link href={`/account/orders/${o.id}`} className="font-medium text-primary-700 hover:underline dark:text-primary-200">{o.number}</Link>
-                      <span className="text-muted-foreground">{formatDate(o.createdAt)} · {formatAED(o.total)}</span>
+                      <span className="text-muted-foreground">{formatDate(o.createdAt)} · {formatSAR(o.total)}</span>
                     </li>
                   ))}
                 </ul>

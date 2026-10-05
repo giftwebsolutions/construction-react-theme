@@ -24,14 +24,14 @@ export const users: User[] = [
 export const addresses: Address[] = [
   {
     id: "addr-1",
-    label: "Site A — Al Barsha",
+    label: "Site A — Al Malqa",
     name: "Omar Al Mansoori",
     phone: "501234567",
-    line1: "Villa 14, Street 21, Al Barsha South 2",
+    line1: "Villa 14, Street 21, Al Malqa South 2",
     line2: "Plot 673-0214",
-    landmark: "Behind Al Barsha Pond Park",
-    area: "Al Barsha",
-    emirate: "Dubai",
+    landmark: "Behind Al Malqa Pond Park",
+    area: "Al Malqa",
+    emirate: "Riyadh",
     unloadingNotes: "Truck can reach the gate. Unload near the east boundary wall.",
     craneAccess: false,
     floor: 0,
@@ -39,13 +39,13 @@ export const addresses: Address[] = [
   },
   {
     id: "addr-2",
-    label: "Site B — Muwaileh",
+    label: "Site B — Al Rawdah",
     name: "Rashid Khan (Site Supervisor)",
     phone: "552345678",
-    line1: "Plot C-221, Muwaileh Commercial",
+    line1: "Plot C-221, Al Rawdah Commercial",
     landmark: "Near University City Road exit",
-    area: "Muwaileh",
-    emirate: "Sharjah",
+    area: "Jeddah",
+    emirate: "Makkah",
     unloadingNotes: "Site gate closes at 6 PM — morning slot preferred for blocks.",
     craneAccess: true,
     floor: 2,
@@ -57,16 +57,16 @@ export const addresses: Address[] = [
     phone: "501234567",
     line1: "Office 1204, Bay Square Building 7",
     line2: "12th Floor",
-    area: "Business Bay",
-    emirate: "Dubai",
+    area: "Al Olaya",
+    emirate: "Riyadh",
     poBox: "123456",
   },
 ];
 
 export const projects: Project[] = [
-  { id: "prj-1", userId: "u-1001", name: "Al Barsha Villa (G+1)", location: "Al Barsha, Dubai", type: "Residential", startDate: "2026-05-02", status: "active", budget: 185000 },
-  { id: "prj-2", userId: "u-1001", name: "Muwaileh Residences", location: "Muwaileh, Sharjah", type: "Commercial", startDate: "2026-02-15", status: "active", budget: 815000 },
-  { id: "prj-3", userId: "u-1001", name: "Business Bay Office Fit-out", location: "Business Bay, Dubai", type: "Renovation", startDate: "2025-11-10", status: "completed", budget: 42000 },
+  { id: "prj-1", userId: "u-1001", name: "Al Malqa Villa (G+1)", location: "Al Malqa, Riyadh", type: "Residential", startDate: "2026-05-02", status: "active", budget: 185000 },
+  { id: "prj-2", userId: "u-1001", name: "Al Rawdah Residences", location: "Al Rawdah, Makkah", type: "Commercial", startDate: "2026-02-15", status: "active", budget: 815000 },
+  { id: "prj-3", userId: "u-1001", name: "Al Olaya Office Fit-out", location: "Al Olaya, Riyadh", type: "Renovation", startDate: "2025-11-10", status: "completed", budget: 42000 },
 ];
 
 const STEPS: { status: OrderStatus; label: string }[] = [
@@ -165,23 +165,23 @@ export const orders: Order[] = seeds.map((s) => {
 
 export const quotes: QuoteRequest[] = [
   {
-    id: "q-1", number: "QT-5521", userId: "u-1001", projectName: "Muwaileh Residences — Block B", city: "Sharjah",
+    id: "q-1", number: "QT-5521", userId: "u-1001", projectName: "Al Rawdah Residences — Block B", city: "Makkah",
     createdAt: "2026-09-23T10:00:00+04:00", status: "quoted", quotedAmount: 125300, validTill: "2026-10-07",
     items: [{ name: "OPC 53 Cement", quantity: 2500, unit: "bag" }, { name: "Fe550D TMT (mixed dia.)", quantity: 32, unit: "tonne" }, { name: "M-Sand (Concrete)", quantity: 180, unit: "tonne" }],
     notes: "Phased delivery over 8 weeks. Price locked for cement; steel at market ±2%.",
   },
   {
-    id: "q-2", number: "QT-5534", userId: "u-1001", projectName: "Al Barsha Villa — Finishing", city: "Dubai",
+    id: "q-2", number: "QT-5534", userId: "u-1001", projectName: "Al Malqa Villa — Finishing", city: "Riyadh",
     createdAt: "2026-09-26T18:20:00+04:00", status: "under-review",
     items: [{ name: "Vitrified tiles 600×600", quantity: 180, unit: "box" }, { name: "Interior emulsion", quantity: 24, unit: "pack" }, { name: "UPVC windows", quantity: 240, unit: "sqft" }],
   },
   {
-    id: "q-3", number: "QT-5410", userId: "u-1001", projectName: "Business Bay Office Fit-out", city: "Dubai",
+    id: "q-3", number: "QT-5410", userId: "u-1001", projectName: "Al Olaya Office Fit-out", city: "Riyadh",
     createdAt: "2026-06-11T09:10:00+04:00", status: "accepted", quotedAmount: 13750, validTill: "2026-06-25",
     items: [{ name: "Waterproofing — roof coating", quantity: 8, unit: "pack" }, { name: "Sanitaryware set", quantity: 2, unit: "set" }],
   },
   {
-    id: "q-4", number: "QT-5302", userId: "u-1001", projectName: "Boundary wall — Al Quoz warehouse", city: "Dubai",
+    id: "q-4", number: "QT-5302", userId: "u-1001", projectName: "Boundary wall — Al Quoz warehouse", city: "Riyadh",
     createdAt: "2026-04-02T12:00:00+04:00", status: "expired", quotedAmount: 8200, validTill: "2026-04-16",
     items: [{ name: "Solid concrete blocks 6\"", quantity: 3000, unit: "piece" }],
   },
@@ -189,7 +189,7 @@ export const quotes: QuoteRequest[] = [
 
 export const notifications: Notification[] = [
   { id: "n1", userId: "u-1001", kind: "order", title: "Order BM24077 is out for delivery", body: "Driver Imran (+971 55 xxx 4421) will reach Site B between 2–5 PM.", date: "2026-09-27T09:30:00+04:00", read: false, href: "/account/orders/ord-24077" },
-  { id: "n2", userId: "u-1001", kind: "quote", title: "Quote QT-5521 is ready", body: "Your project quote of AED 125,300 is valid till 7 Oct.", date: "2026-09-24T15:10:00+04:00", read: false, href: "/account/quotes" },
-  { id: "n3", userId: "u-1001", kind: "offer", title: "Steel prices dropped AED 0.10/kg", body: "Tata Tiscon and JSW Fe550D now at lower tier prices for 5 tonne+ orders.", date: "2026-09-21T08:00:00+04:00", read: true, href: "/category/civil" },
-  { id: "n4", userId: "u-1001", kind: "account", title: "Credit limit increased", body: "Your Pay Later limit is now AED 22,000.", date: "2026-09-10T11:00:00+04:00", read: true, href: "/account/profile" },
+  { id: "n2", userId: "u-1001", kind: "quote", title: "Quote QT-5521 is ready", body: "Your project quote of SAR 125,300 is valid till 7 Oct.", date: "2026-09-24T15:10:00+04:00", read: false, href: "/account/quotes" },
+  { id: "n3", userId: "u-1001", kind: "offer", title: "Steel prices dropped SAR 0.10/kg", body: "Tata Tiscon and JSW Fe550D now at lower tier prices for 5 tonne+ orders.", date: "2026-09-21T08:00:00+04:00", read: true, href: "/category/civil" },
+  { id: "n4", userId: "u-1001", kind: "account", title: "Credit limit increased", body: "Your Pay Later limit is now SAR 22,000.", date: "2026-09-10T11:00:00+04:00", read: true, href: "/account/profile" },
 ];

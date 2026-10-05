@@ -4,11 +4,11 @@ import { useEffect, useId, useMemo, useRef, useState } from "react";
 import { Check, ChevronDown, MapPin, Search } from "lucide-react";
 import { useDeliveryLocation } from "@/store/ui";
 import { useHydrated } from "@/lib/hooks/use-hydrated";
-import { EMIRATES, SERVICE_AREAS, areaLabel } from "@/lib/data/locations";
+import { DEFAULT_AREA_ID, SAUDI_REGIONS, SERVICE_AREAS, areaLabel, lookupArea } from "@/lib/data/locations";
 import { cn } from "@/lib/utils/cn";
 import { toast } from "@/store/toast";
 
-const DEFAULT_LABEL = "Riyadh, Kingdom of Saudi Arabia"; // Default label for the delivery location
+const DEFAULT_LABEL = areaLabel(lookupArea(DEFAULT_AREA_ID)!);
 
 export function LocationSelector({ tone = "dark", className }: { tone?: "dark" | "light"; className?: string }) {
   const hydrated = useHydrated();
@@ -32,7 +32,7 @@ export function LocationSelector({ tone = "dark", className }: { tone?: "dark" |
 
   const groups = useMemo(() => {
     const needle = q.trim().toLowerCase();
-    return EMIRATES.map((emirate) => ({
+    return SAUDI_REGIONS.map((emirate) => ({
       emirate,
       areas: SERVICE_AREAS.filter((a) => a.emirate === emirate && (!needle || `${a.area} ${a.emirate}`.toLowerCase().includes(needle))),
     })).filter((g) => g.areas.length);
@@ -65,7 +65,7 @@ export function LocationSelector({ tone = "dark", className }: { tone?: "dark" |
       {open && (
         <div id={id} className="absolute left-0 top-full z-50 mt-2 w-80 max-w-[calc(100vw-2rem)] animate-fade-in rounded-xl border border-border bg-surface p-4 text-foreground shadow-card-hover">
           <p className="text-sm font-semibold">Choose your delivery area</p>
-          <p className="mt-1 text-xs text-muted-foreground">We deliver across all seven emirates. Charges and ETA depend on your site area.</p>
+          <p className="mt-1 text-xs text-muted-foreground">Choose a Saudi delivery city. Charges and ETA depend on your location.</p>
           <label className="relative mt-3 block">
             <span className="sr-only">Search area</span>
             <Search className="pointer-events-none absolute left-3 top-1/2 size-4 -translate-y-1/2 text-muted-foreground" aria-hidden />
@@ -73,7 +73,7 @@ export function LocationSelector({ tone = "dark", className }: { tone?: "dark" |
               autoFocus
               value={q}
               onChange={(e) => setQ(e.target.value)}
-              placeholder="Search area or emirate"
+              placeholder="Search city or region"
               className="h-10 w-full rounded-lg border border-border bg-surface pl-9 pr-3 text-sm focus:border-primary-600 focus:outline-none focus:ring-3 focus:ring-primary-600/15"
             />
           </label>

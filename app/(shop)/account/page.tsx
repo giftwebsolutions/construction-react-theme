@@ -4,7 +4,7 @@ import Link from "next/link";
 import { ArrowRight, Calculator, FileText, Heart, Package, Truck, Upload } from "lucide-react";
 import { getSessionUser } from "@/lib/auth/session";
 import { getOrders, getQuotes } from "@/lib/data";
-import { formatDate, formatAED } from "@/lib/utils/format";
+import { formatDate, formatSAR } from "@/lib/utils/format";
 import { OrderStatusBadge } from "@/components/account/StatusBadge";
 import { WishlistCount } from "@/components/account/WishlistClient";
 import { EmptyState } from "@/components/ui/EmptyState";
@@ -44,10 +44,10 @@ export default async function AccountOverview() {
         <div className="flex flex-col gap-3 rounded-xl bg-gradient-to-r from-primary-800 to-primary-600 p-5 text-white sm:flex-row sm:items-center sm:justify-between">
           <div>
             <p className="text-xs font-bold uppercase tracking-wider text-accent-400">Smart-MEP Credit</p>
-            <p className="mt-1 font-display text-2xl font-bold">{formatAED(user.creditLimit - 142000)} available</p>
-            <p className="text-xs text-primary-100">of {formatAED(user.creditLimit)} limit · 30-day terms · next due 15 Oct</p>
+            <p className="mt-1 font-display text-2xl font-bold">{formatSAR(user.creditLimit - 142000)} available</p>
+            <p className="text-xs text-primary-100">of {formatSAR(user.creditLimit)} limit · 30-day terms · next due 15 Oct</p>
           </div>
-          <p className="text-sm text-primary-100">Lifetime spend: <strong className="text-white">{formatAED(spend)}</strong></p>
+          <p className="text-sm text-primary-100">Lifetime spend: <strong className="text-white">{formatSAR(spend)}</strong></p>
         </div>
       )}
 
@@ -69,7 +69,7 @@ export default async function AccountOverview() {
                       <span className="block text-sm font-semibold text-foreground">{o.number}</span>
                       <span className="block text-xs text-muted-foreground">{formatDate(o.createdAt)} · {o.lines.length} items</span>
                     </span>
-                    <span className="text-right"><span className="block text-sm font-bold text-foreground">{formatAED(o.total)}</span><OrderStatusBadge status={o.status} /></span>
+                    <span className="text-right"><span className="block text-sm font-bold text-foreground">{formatSAR(o.total)}</span><OrderStatusBadge status={o.status} /></span>
                   </Link>
                 </li>
               ))}
@@ -85,7 +85,7 @@ export default async function AccountOverview() {
                     <td className="px-4 py-3 text-muted-foreground">{formatDate(o.createdAt)}</td>
                     <td className="max-w-56 truncate px-4 py-3 text-foreground">{o.lines.map((l) => l.name).join(", ")}</td>
                     <td className="px-4 py-3"><OrderStatusBadge status={o.status} /></td>
-                    <td className="px-4 py-3 text-right font-semibold tabular-nums text-foreground">{formatAED(o.total)}</td>
+                    <td className="px-4 py-3 text-right font-semibold tabular-nums text-foreground">{formatSAR(o.total)}</td>
                   </tr>
                 ))}
               </tbody>

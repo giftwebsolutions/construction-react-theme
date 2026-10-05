@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { FileText, Plus } from "lucide-react";
 import { getSessionUser } from "@/lib/auth/session";
 import { getQuotes } from "@/lib/data";
-import { formatDate, formatAED } from "@/lib/utils/format";
+import { formatDate, formatSAR } from "@/lib/utils/format";
 import { formatQty } from "@/lib/utils/units";
 import { QuoteStatusBadge } from "@/components/account/StatusBadge";
 import { ButtonLink } from "@/components/ui/Button";
@@ -41,7 +41,7 @@ export default async function QuotesPage() {
               {q.quotedAmount && (
                 <div className="mt-4 flex flex-wrap items-center justify-between gap-3 border-t border-border pt-4">
                   <p className="text-sm">
-                    Quoted <strong className="font-display text-lg text-foreground">{formatAED(q.quotedAmount)}</strong>
+                    Quoted <strong className="font-display text-lg text-foreground">{formatSAR(q.quotedAmount)}</strong>
                     {q.validTill && <span className="text-xs text-muted-foreground"> · valid till {formatDate(q.validTill)}</span>}
                   </p>
                   {q.status === "quoted" && (

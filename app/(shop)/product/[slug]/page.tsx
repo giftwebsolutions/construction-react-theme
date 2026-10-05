@@ -29,7 +29,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   if (!p) return { title: "Product not found" };
   const brand = brandOf(p);
   return {
-    title: `${p.name} — AED ${p.price}/${p.unit}`,
+    title: `${p.name} — SAR ${p.price}/${p.unit}`,
     description: `${p.shortDescription} Buy genuine ${brand.name} with VAT invoice and site delivery.`,
     alternates: { canonical: `/product/${p.slug}` },
     openGraph: { type: "website", title: p.name, description: p.shortDescription, images: [{ url: p.images[0]!, width: 800, height: 800, alt: p.name }] },
@@ -70,7 +70,7 @@ export default async function ProductPage({ params, searchParams }: Props) {
     offers: {
       "@type": "Offer",
       url: `${siteUrl}/product/${product.slug}`,
-      priceCurrency: "AED",
+      priceCurrency: "SAR",
       price: product.price,
       availability: product.stock > 0 ? "https://schema.org/InStock" : "https://schema.org/OutOfStock",
       seller: { "@type": "Organization", name: "Smart-MEP" },

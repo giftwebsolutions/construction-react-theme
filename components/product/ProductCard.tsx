@@ -12,7 +12,7 @@ import { QuantityStepper } from "@/components/ui/QuantityStepper";
 import { RatingPill } from "@/components/ui/Rating";
 import { Skeleton } from "@/components/ui/Skeleton";
 import { cn } from "@/lib/utils/cn";
-import { discountPercent, formatAED } from "@/lib/utils/format";
+import { discountPercent, formatSAR } from "@/lib/utils/format";
 import { bestTier } from "@/lib/utils/pricing";
 import { perUnit, unitLabel } from "@/lib/utils/units";
 import { useAddToCart } from "@/lib/hooks/use-add-to-cart";
@@ -105,7 +105,7 @@ export function ProductCard({ data, variant = "grid", priority, className }: Pro
       </div>
       <Price price={p.price} mrp={p.mrp} unit={p.unit} size="md" className="mt-2.5" />
       <p className="mt-1 min-h-4 text-[11px] font-medium text-success">
-        {tier ? `${formatAED(tier.pricePerUnit)}${perUnit(p.unit)} for ${tier.minQty}+ ${unitLabel(p.unit, tier.minQty)}` : lowStock ? <span className="text-accent-700">Only a few left</span> : null}
+        {tier ? `${formatSAR(tier.pricePerUnit)}${perUnit(p.unit)} for ${tier.minQty}+ ${unitLabel(p.unit, tier.minQty)}` : lowStock ? <span className="text-accent-700">Only a few left</span> : null}
       </p>
     </>
   );

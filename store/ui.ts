@@ -3,6 +3,7 @@
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
 import { browserStorage } from "./storage";
+import { DEFAULT_AREA_ID, areaLabel, lookupArea } from "@/lib/data/locations";
 
 interface UIState {
   listingPending: boolean;
@@ -31,10 +32,22 @@ interface LocationState {
 export const useDeliveryLocation = create<LocationState>()(
   persist(
     (set) => ({
-      areaId: "al-quoz",
-      label: "Al Quoz, Dubai",
-      setLocation: (areaId, label) => set({ areaId, label }),
+      areaId: DEFAULT_AREA_ID,
+      label: areaLabel(lookupArea(DEFAULT_AREA_ID)!),
+      setLocation: (areaId) => {
+        const area = lookupArea(areaId);
+        if (area) set({ areaId: area.id, label: areaLabel(area) });
+      },
     }),
-    { name: "bm-location-ae", storage: browserStorage, version: 1 },
+    {
+      name: "bm-location-ae",
+      storage: browserStorage,
+      version: 1,
+      merge: (persisted, current) => {
+        const saved = persisted as Partial<LocationState> | undefined;
+        const area = lookupArea(saved?.areaId ?? "") ?? lookupArea(DEFAULT_AREA_ID)!;
+        return { ...current, areaId: area.id, label: areaLabel(area) };
+      },
+    },
   ),
 );

@@ -6,7 +6,7 @@ import { ButtonLink } from "@/components/ui/Button";
 import { EmptyState } from "@/components/ui/EmptyState";
 import { Pagination } from "@/components/ui/Pagination";
 import { ProductGrid } from "@/components/product/ProductCard";
-import { formatAED, formatNumber } from "@/lib/utils/format";
+import { formatSAR, formatNumber } from "@/lib/utils/format";
 import { applyFacet, clearFilters, isSelected, listingHref, type ListingContext } from "./filter-state";
 import { FilterSidebar, ListingToolbar, LoadMore, ResultsArea } from "./ListingControls";
 
@@ -27,7 +27,7 @@ function activeChips(result: ProductListResult, q: ProductQuery, ctx: ListingCon
   }
   if (q.minPrice !== undefined || q.maxPrice !== undefined) {
     chips.push({
-      label: `${formatAED(q.minPrice ?? result.priceRange.min)} – ${formatAED(q.maxPrice ?? result.priceRange.max)}`,
+      label: `${formatSAR(q.minPrice ?? result.priceRange.min)} – ${formatSAR(q.maxPrice ?? result.priceRange.max)}`,
       href: listingHref(ctx, { ...q, minPrice: undefined, maxPrice: undefined, page: 1 }),
     });
   }

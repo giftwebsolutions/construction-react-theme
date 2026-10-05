@@ -33,7 +33,7 @@ export function unitShort(unit: Unit) {
 }
 
 export function formatQty(qty: number, unit: Unit) {
-  return `${new Intl.NumberFormat("en-AE").format(qty)} ${unitLabel(unit, qty)}`;
+  return `${new Intl.NumberFormat("en-SA").format(qty)} ${unitLabel(unit, qty)}`;
 }
 
 /* Conversions used by calculators and the listing "price per" helpers */
@@ -54,6 +54,6 @@ export function normaliseQty(qty: number, minOrderQty: number, stepQty: number) 
 }
 
 export function formatWeight(kg: number) {
-  if (kg >= 1000) return `${(kg / 1000).toLocaleString("en-AE", { maximumFractionDigits: 2 })} tonne`;
-  return `${kg.toLocaleString("en-AE", { maximumFractionDigits: 1 })} kg`;
+  if (kg >= 1000) return `${(kg / 1000).toLocaleString("en-SA", { maximumFractionDigits: 2 })} tonne`;
+  return `${kg.toLocaleString("en-SA", { maximumFractionDigits: 1 })} kg`;
 }

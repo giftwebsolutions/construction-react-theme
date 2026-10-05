@@ -8,7 +8,7 @@ import type { Product } from "@/types";
 import { Button } from "@/components/ui/Button";
 import { QuantityStepper } from "@/components/ui/QuantityStepper";
 import { cn } from "@/lib/utils/cn";
-import { discountPercent, formatAED } from "@/lib/utils/format";
+import { discountPercent, formatSAR } from "@/lib/utils/format";
 import { exclusiveOfVat, nextTier, tierPrice } from "@/lib/utils/pricing";
 import { formatQty, formatWeight, perUnit, unitLabel } from "@/lib/utils/units";
 import { priceForSelection, scaledTiers } from "@/lib/utils/variants";
@@ -73,7 +73,7 @@ export function PurchasePanel({ product: p, brandName, initialSelection }: { pro
   };
 
   const share = async () => {
-    const data = { title: p.name, text: `${p.name} — ${formatAED(price)}${perUnit(p.unit)} on Smart-MEP`, url: window.location.href };
+    const data = { title: p.name, text: `${p.name} — ${formatSAR(price)}${perUnit(p.unit)} on Smart-MEP`, url: window.location.href };
     if (navigator.share) {
       try {
         await navigator.share(data);
@@ -90,18 +90,18 @@ export function PurchasePanel({ product: p, brandName, initialSelection }: { pro
       <div className="rounded-xl bg-surface-muted p-4">
         <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1">
           <span className="font-display text-3xl font-extrabold text-foreground tabular-nums">
-            {formatAED(shown(unitPrice))}
+            {formatSAR(shown(unitPrice))}
             <span className="ml-1 font-sans text-base font-medium text-muted-foreground">{perUnit(p.unit)}</span>
           </span>
           {off > 0 && (
             <>
-              <span className="text-sm text-muted-foreground line-through">MRP {formatAED(shown(mrp))}</span>
+              <span className="text-sm text-muted-foreground line-through">MRP {formatSAR(shown(mrp))}</span>
               <span className="rounded bg-success px-1.5 py-0.5 text-xs font-bold text-white">{off}% off</span>
             </>
           )}
         </div>
         <div className="mt-2 flex flex-wrap items-center justify-between gap-2">
-          <p className="text-xs text-muted-foreground">{inclVat ? `Inclusive of ${p.vatRate}% VAT` : `+ ${p.vatRate}% VAT (${formatAED(unitPrice - exclusiveOfVat(unitPrice, p.vatRate))})`}</p>
+          <p className="text-xs text-muted-foreground">{inclVat ? `Inclusive of ${p.vatRate}% VAT` : `+ ${p.vatRate}% VAT (${formatSAR(unitPrice - exclusiveOfVat(unitPrice, p.vatRate))})`}</p>
           <div className="inline-flex rounded-lg border border-border bg-surface p-0.5 text-xs font-semibold" role="group" aria-label="VAT display">
             {[true, false].map((v) => (
               <button key={String(v)} type="button" aria-pressed={inclVat === v} onClick={() => setInclVat(v)} className={cn("rounded-md px-2.5 py-1.5", inclVat === v ? "bg-primary-800 text-white" : "text-muted-foreground")}>
@@ -112,7 +112,7 @@ export function PurchasePanel({ product: p, brandName, initialSelection }: { pro
         </div>
         {unitPrice < price && (
           <p className="mt-2 text-xs font-semibold text-success">
-            Bulk price applied — you save {formatAED((price - unitPrice) * qty)} on this quantity
+            Bulk price applied — you save {formatSAR((price - unitPrice) * qty)} on this quantity
           </p>
         )}
       </div>
@@ -134,7 +134,7 @@ export function PurchasePanel({ product: p, brandName, initialSelection }: { pro
               ) : (
                 <button key={o.value} type="button" onClick={() => select(v.key, o.value)} aria-pressed={active} className={cn("min-h-11 rounded-lg border px-4 text-sm font-medium transition", active ? "border-primary-800 bg-primary-800 text-white" : "border-border bg-surface text-foreground hover:border-primary-600")}>
                   {o.label}
-                  {o.price && o.price !== price && !active && <span className="ml-1.5 text-xs text-muted-foreground">{formatAED(o.price)}</span>}
+                  {o.price && o.price !== price && !active && <span className="ml-1.5 text-xs text-muted-foreground">{formatSAR(o.price)}</span>}
                 </button>
               );
             })}
@@ -168,7 +168,7 @@ export function PurchasePanel({ product: p, brandName, initialSelection }: { pro
                         {nextMin ? `–${nextMin - 1}` : "+"} {unitLabel(p.unit, 2)}
                         {active && <span className="ml-2 text-[10px] font-bold uppercase text-accent-700">Current</span>}
                       </td>
-                      <td className="px-3 py-2 text-right tabular-nums">{formatAED(shown(t.pricePerUnit))}</td>
+                      <td className="px-3 py-2 text-right tabular-nums">{formatSAR(shown(t.pricePerUnit))}</td>
                       <td className="px-3 py-2 text-right text-success tabular-nums">{i === 0 ? "—" : `${discountPercent(t.pricePerUnit, price)}%`}</td>
                     </tr>
                   );
@@ -188,14 +188,14 @@ export function PurchasePanel({ product: p, brandName, initialSelection }: { pro
           </div>
           <dl className="min-w-0 flex-1 text-right">
             <dt className="text-xs text-muted-foreground">Total</dt>
-            <dd className="font-display text-2xl font-bold text-foreground tabular-nums">{formatAED(shown(total))}</dd>
+            <dd className="font-display text-2xl font-bold text-foreground tabular-nums">{formatSAR(shown(total))}</dd>
             {p.weightKg ? <dd className="text-xs text-muted-foreground">Total weight ≈ {formatWeight(p.weightKg * qty)}</dd> : null}
           </dl>
         </div>
         {upcoming && (
           <p className="rounded-lg bg-primary-50 px-3 py-2 text-xs text-primary-800 dark:bg-surface-muted dark:text-primary-100">
             <Zap className="mr-1 inline size-3.5 text-accent-600" aria-hidden />
-            Add {formatQty(upcoming.minQty - qty, p.unit)} more to pay {formatAED(shown(upcoming.pricePerUnit))}
+            Add {formatQty(upcoming.minQty - qty, p.unit)} more to pay {formatSAR(shown(upcoming.pricePerUnit))}
             {perUnit(p.unit)}.{" "}
             <button type="button" onClick={() => setQty(upcoming.minQty)} className="font-bold underline">
               Update qty
@@ -260,11 +260,11 @@ export function PurchasePanel({ product: p, brandName, initialSelection }: { pro
         <div className="flex items-center gap-3">
           <div className="min-w-0 flex-1">
             <p className="font-display text-lg font-bold leading-none text-foreground">
-              {formatAED(shown(unitPrice))}
+              {formatSAR(shown(unitPrice))}
               <span className="ml-0.5 font-sans text-xs font-medium text-muted-foreground">{perUnit(p.unit)}</span>
             </p>
             <p className="mt-0.5 truncate text-xs text-muted-foreground">
-              {formatQty(qty, p.unit)} · {formatAED(shown(total))}
+              {formatQty(qty, p.unit)} · {formatSAR(shown(total))}
             </p>
           </div>
           <Button variant="accent" disabled={outOfStock} onClick={() => add()} tabIndex={showSticky ? 0 : -1} leftIcon={<ShoppingCart className="size-4" aria-hidden />}>
